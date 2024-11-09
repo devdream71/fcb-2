@@ -1,5 +1,6 @@
 import 'package:fcb_global/utils/app_assets.dart';
 import 'package:fcb_global/utils/app_colors.dart';
+import 'package:fcb_global/widget/label_with_asterrisk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -17,7 +18,7 @@ class MemberSwitch extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-      
+
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
@@ -30,15 +31,15 @@ class MemberSwitch extends StatelessWidget {
                 ),
               ),
             ),
-      
+
             buildRating(),
-      
+
             ratingwithdimond(),
-      
+
             HeaderWithTeams(),
-      
+
             const SizedBox(height: 20),
-      
+
             // Team member section
             Expanded(
               child: Row(
@@ -48,16 +49,16 @@ class MemberSwitch extends StatelessWidget {
                     child: Stack(
                       children: [
                         TeamList(
-                          teamScore: 100,
+                          teamScore: 5,
                           members: List.generate(
-                            7,
-                            (index) => MemberData('MD.Anwar Alom',
-                                'anowar@gmail.com', 'Ref:Md.Korim', 10),
+                            1,
+                            (index) => MemberData('MD. Tamim',
+                                'tamin@gmail.com', 'Ref:Md.Korim', 0),
                           ),
                         ),
                         Positioned(
                           right: 50,
-                          bottom: 100,
+                          bottom: 300,
                           child: TextButton(
                             onPressed: () {
                               showModalBottomSheet(
@@ -85,23 +86,23 @@ class MemberSwitch extends StatelessWidget {
                   ),
                   const Dash(
                       direction: Axis.vertical,
-                      length: 550,
+                      length: 150,
                       dashLength: 5,
                       dashColor: Colors.white),
                   Expanded(
                     child: Stack(
                       children: [
                         TeamList(
-                          teamScore: 150,
+                          teamScore: 3,
                           members: List.generate(
-                            7,
-                            (index) => MemberData('MD.Anwar Alom',
-                                'anowar@gmail.com', 'Ref:Md.Taher', 5),
+                            1,
+                            (index) => MemberData('MD.Shakib',
+                                'shakib@gmail.com', 'Ref:Md.Taher', 2),
                           ),
                         ),
                         Positioned(
                           right: 50,
-                          bottom: 100,
+                          bottom: 300,
                           child: TextButton(
                             onPressed: () {
                               showModalBottomSheet(
@@ -171,21 +172,48 @@ buildRating() {
   return const Column(
     children: [
       CircleAvatar(
-        radius: 30,
-        backgroundImage: AssetImage(AppAssets.appLogo),
+        radius: 37,
+        child: CircleAvatar(
+          radius: 35,
+          backgroundImage: AssetImage(AppAssets.biden),
+        ),
       ),
       Text(
-        'Md. Anwar Alom',
+        'Trump',
         style: TextStyle(fontSize: 13, color: Colors.white),
       ),
       Text(
-        'anowar@gmail.com',
+        'trump@gmail.com',
         style: TextStyle(fontSize: 13, color: Colors.white),
       ),
       Text(
         'Ref: Md. Korim',
         style: TextStyle(fontSize: 13, color: Colors.white),
       ),
+    ],
+  );
+}
+
+///build rating Team
+buildRatingTeam() {
+  return const Column(
+    children: [
+      CircleAvatar(
+        radius: 30,
+        backgroundImage: AssetImage(AppAssets.appLogo),
+      ),
+      Text(
+        'Biden',
+        style: TextStyle(fontSize: 13, color: Colors.white),
+      ),
+      Text(
+        'biden@gmail.com',
+        style: TextStyle(fontSize: 13, color: Colors.white),
+      ),
+      Text(
+        'Ref: Md. Korim',
+        style: TextStyle(fontSize: 13, color: Colors.white),
+      )
     ],
   );
 }
@@ -207,10 +235,10 @@ class HeaderWithTeams extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 14),
         ),
         SizedBox(height: 5),
-        Text(
-          'L-1 L-2',
-          style: TextStyle(color: Colors.white, fontSize: 14),
-        ),
+        // Text(
+        //   'L-1 L-2',
+        //   style: TextStyle(color: Colors.white, fontSize: 14),
+        // ),
       ],
     );
   }
@@ -227,7 +255,7 @@ class TeamList extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 80,
+          width: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), color: Colors.white),
           child: Center(
@@ -235,7 +263,7 @@ class TeamList extends StatelessWidget {
               '$teamScore',
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 24,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold),
             ),
           ),
@@ -262,7 +290,7 @@ class MemberTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Padding( 
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
         children: [
@@ -283,10 +311,14 @@ class MemberTile extends StatelessWidget {
                 ],
               ),
               CircleAvatar(
+                radius: 15,
                 backgroundColor: Colors.white,
                 child: Text(
                   '${member.score}',
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -297,6 +329,7 @@ class MemberTile extends StatelessWidget {
   }
 }
 
+///MemberData
 class MemberData {
   final String name;
   final String email;
@@ -306,7 +339,17 @@ class MemberData {
   MemberData(this.name, this.email, this.ref, this.score);
 }
 
-class JoinForm extends StatelessWidget {
+///joinForm====>
+class JoinForm extends StatefulWidget {
+  const JoinForm({super.key});
+
+  @override
+  State<JoinForm> createState() => _JoinFormState();
+}
+
+class _JoinFormState extends State<JoinForm> {
+  String? selectedValue = 'No';
+
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
@@ -314,107 +357,174 @@ class JoinForm extends StatelessWidget {
           0.9, // Controls the height of the modal sheet (90% of screen)
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Joining',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.cancel, color: Colors.red),
-                ),
-              ],
-            ),
-            const Text("Name"),
-            const CustomTextField(label: 'Name'),
-            const Text("Email"),
-            const CustomTextField(label: 'E-Mail'),
-            const Text("Phone Number"),
-            const CustomTextField(label: 'Phone Number'),
-            const Text("Pssword"),
-            const CustomTextField(label: 'Password', isPassword: true),
-            Container(
-              //color: Colors.cyan,
-              height: 100,
-              child: Row(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Container(
-                      //color: Colors.orange,
-                      height: 90,
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Gender"),
-                          CustomTextField(label: 'Gender'),
-                        ],
-                      ),
-                    ),
+                  const Text(
+                    'Joining',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Container(
-                      //color: Colors.red,
-                      height: 90,
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("century"),
-                          CustomTextField(label: 'Century'),
-                        ],
-                      ),
-                    ),
-                  )
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.cancel, color: Colors.red),
+                  ),
                 ],
               ),
-            ),
-            const Text("Referral E-mail"),
-            const CustomTextField(label: 'Referral E-Mail'),
-            const Text("Up Mail"),
-            const CustomTextField(label: 'Up Mail'),
-            const SizedBox(height: 16),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.image, size: 50),
-                SizedBox(width: 10),
-                Text('Picture Upload'),
-              ],
-            ),
-            const Spacer(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      const Color(0xFF4B0082), // Purple color as in the image
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                ),
-                child: const Text(
-                  'Join',
-                  style: TextStyle(color: Colors.white),
+              const SizedBox(height: 16), // Add spacing for better layout
+
+              const LabelWithAsterisk(
+                labelText: 'Name',
+                isRequired: true,
+              ),
+              const CustomTextField(label: 'Name'),
+              const SizedBox(height: 8),
+
+              const LabelWithAsterisk(
+                labelText: 'Email',
+                isRequired: true,
+              ),
+              const CustomTextField(label: 'E-Mail'),
+              const SizedBox(height: 8),
+
+              const LabelWithAsterisk(
+                labelText: 'Phone Number',
+                isRequired: true,
+              ),
+              const CustomTextField(label: 'Phone Number'),
+              const SizedBox(height: 8),
+
+              const LabelWithAsterisk(
+                labelText: 'Password',
+                isRequired: true,
+              ),
+              const CustomTextField(label: 'Password', isPassword: true),
+              const SizedBox(height: 8),
+              const SizedBox(
+                height: 100,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 95,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LabelWithAsterisk(
+                              labelText: 'Gender',
+                              isRequired: true,
+                            ),
+                            CustomTextField(label: 'Gender'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: SizedBox(
+                        height: 95,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            LabelWithAsterisk(
+                              labelText: 'Country',
+                              isRequired: true,
+                            ),
+                            CustomTextField(label: 'Country'),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+
+              const LabelWithAsterisk(
+                labelText: 'Referral E-mail',
+                isRequired: true,
+              ),
+              const CustomTextField(label: 'Ref@gmail.com'),
+              const SizedBox(height: 8),
+
+              const LabelWithAsterisk(
+                labelText: 'Up Mail',
+                isRequired: true,
+              ),
+              const CustomTextField(label: 'upline@gmail.com'),
+              const SizedBox(height: 8),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.image, size: 50),
+                  SizedBox(width: 10),
+                  Text('Picture Upload'),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4B0082), // Purple color
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 15),
+                  ),
+                  child: const Text(
+                    'Join',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  ///botom sheet for gallery and camera
+  void _showImageSourceActionSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  //_pickImage(ImageSource.gallery);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_camera),
+                title: const Text('Camera'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  //_pickImage(ImageSource.camera);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
 
+///custom text field.
 class CustomTextField extends StatelessWidget {
   final String label;
   final bool isPassword;

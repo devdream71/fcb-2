@@ -1,4 +1,3 @@
- 
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/utils/app_space.dart';
 import 'package:fcb_global/widget/custome_textfield.dart';
@@ -15,28 +14,33 @@ class InvestView extends StatelessWidget {
           backgroundColor: AppColors.appcolor,
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(left: 15, top: 2, right: 15, bottom: 5),
+              padding:
+                  const EdgeInsets.only(left: 15, top: 2, right: 15, bottom: 5),
               child: Column(
                 children: [
                   Center(
                     child: Column(
                       children: [
                         Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Icon(
-                                  Icons.cancel,
-                                  color: Colors.red,
-                                ))),
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: const Icon(
+                              Icons.cancel,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
                         const Icon(
                           Icons.api_outlined,
                           size: 60,
                           color: Colors.white,
                         ),
-                        const SizedBox(height: 5,),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         const Text(
                           "Invest",
                           style: TextStyle(fontSize: 16, color: Colors.white),
@@ -60,7 +64,9 @@ class InvestView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const CustomTextField(),
                   AppSpace.spaceH14,
                   const Align(
@@ -74,7 +80,9 @@ class InvestView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const  SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const CustomTextField(),
                   AppSpace.spaceH10,
                   AppSpace.spaceH10,
