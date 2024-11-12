@@ -1,4 +1,3 @@
- 
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,31 +19,45 @@ class PackageView extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Package",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: IconButton(
                               onPressed: () {
                                 Get.back();
                               },
                               icon: const Icon(
                                 Icons.cancel,
                                 color: Colors.red,
-                              ))),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       const Icon(
                         Icons.api_outlined,
                         size: 60,
                         color: Colors.white,
                       ),
-                      const Text(
-                        "Package",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      ),
+                      
                     ],
                   ),
                   ListView.builder(
                       itemCount: 6,
                       shrinkWrap: true,
-                      physics: const  NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.all(10),
@@ -52,8 +65,7 @@ class PackageView extends StatelessWidget {
                             color: Colors.white,
                             strokeWidth: 1,
                             child: Container(
-                              margin: EdgeInsets.all(8),
-
+                              margin: const EdgeInsets.all(8),
                               alignment: Alignment.centerLeft,
                               padding: const EdgeInsets.only(top: 5, bottom: 5),
                               child: const Column(

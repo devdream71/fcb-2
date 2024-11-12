@@ -6,7 +6,7 @@ class AppColors {
   static const Color appcolor = Color(0xff7E008D);
   static Color primaryColor = Colors.blue;
   static Color secondaryColor = Colors.green;
-  static Color buttonColor = Color(0xffFF914D);
+  static Color buttonColor = const Color(0xffFF914D);
   //static Color bgColor = Helpers.fromHex('#F4FDFF');
   static Color black = Colors.black;
   static Color black54 = Colors.black54;

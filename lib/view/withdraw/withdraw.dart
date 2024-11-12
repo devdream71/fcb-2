@@ -1,7 +1,9 @@
 import 'package:fcb_global/utils/app_colors.dart';
+import 'package:fcb_global/view/withdraw/withdraw_history.dart';
 import 'package:fcb_global/widget/custome_textfield.dart';
 import 'package:fcb_global/widget/label_with_asterrisk.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
 
 class Withdraw extends StatelessWidget {
@@ -13,10 +15,23 @@ class Withdraw extends StatelessWidget {
         child: Scaffold(
       backgroundColor: AppColors.appcolor,
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 2),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 5, bottom: 5),
         child: Column(
           children: [
-            Align(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Withdraw",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                 Align(
               alignment: Alignment.centerRight,
               child: IconButton(
                 onPressed: () {
@@ -28,6 +43,43 @@ class Withdraw extends StatelessWidget {
                 ),
               ),
             ),
+              ],
+            ),
+            
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                Get.to(() => const WithdrawHistory());
+              },
+              child: Container(
+                height: 45,
+                width: double.infinity,
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: AppColors.buttonColor),
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "View Withdraw  History",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+              const Dash(
+                direction: Axis.horizontal,
+                length: 230,
+                dashLength: 12,
+                dashColor: Colors.white),
             const SizedBox(
               height: 15,
             ),
@@ -115,7 +167,8 @@ class Withdraw extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.circular(8), // Set border radius to 8

@@ -1,15 +1,20 @@
-import 'package:fcb_global/view/login/login_view.dart';
+
+import 'package:fcb_global/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
+
+import 'view/login/login_view.dart';
 
 void main() {
-   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarIconBrightness: Brightness.light,
-    systemNavigationBarColor: Color(0xff7E008D), // navigation bar color
-    statusBarColor: Color(0xff7E008D), // status bar color
-  ));
   runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Color(0xff7E008D), // navigation bar color
+      statusBarColor: Color(0xff7E008D), // status bar color
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,13 +27,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:   LoginView(),
+      //home: LoginView(),
+      home: const SplashScreen(),
     );
   }
 }
-
- 

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fcb_global/utils/app_assets.dart';
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/team/member_switch.dart';
@@ -7,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../widget/label_with_asterrisk.dart';
 
@@ -18,44 +15,60 @@ class TeamView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.appcolor,
-        body: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.red,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Team",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.cancel,
+                    color: Colors.red,
+                  ),
                 ),
               ),
-            ),
+                ],
+              ),
 
-            buildRating(),
-
-            ratingwithdimond(),
-
-            const HeaderWithTeams(),
-
-            const SizedBox(height: 20),
-
-            //Team member section
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 520,
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Container(
-                           
+              const SizedBox(height: 15,),
+          
+              buildRating(),
+          
+              ratingwithdimond(),
+          
+              const HeaderWithTeams(),
+          
+              const SizedBox(height: 20),
+          
+              //Team member section
+              Expanded(
+                child: SingleChildScrollView(
+                  child: SizedBox(
+                    height: 520,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 200,
                                 child: TeamList(
                                   teamScore: 4,
@@ -69,22 +82,22 @@ class TeamView extends StatelessWidget {
                               const SizedBox(
                                 height: 10,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               InkWell(
-                                onTap: (){
+                                onTap: () {
                                   showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) => Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom),
-                                  child: const JoinForm(),
-                                ),
-                              );
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsets.only(
+                                          bottom: MediaQuery.of(context)
+                                              .viewInsets
+                                              .bottom),
+                                      child: const JoinForm(),
+                                    ),
+                                  );
                                 },
                                 child: const Text(
                                   "Add+",
@@ -96,20 +109,16 @@ class TeamView extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ),
-                      const Dash(
-                          direction: Axis.vertical,
-                          length: 150,
-                          dashLength: 5,
-                          dashColor: Colors.white),
-                      Expanded(
-                        child: Container(
-                         
+                        const Dash(
+                            direction: Axis.vertical,
+                            length: 150,
+                            dashLength: 5,
+                            dashColor: Colors.white),
+                        Expanded(
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 200,
-                                 
                                 child: TeamList(
                                   teamScore: 3,
                                   members: List.generate(
@@ -119,21 +128,22 @@ class TeamView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-
-                              const SizedBox(height: 10,),
+                              const SizedBox(
+                                height: 10,
+                              ),
                               InkWell(
-                                onTap: (){
-                                showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) => Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom),
-                                  child: const JoinForm(),
-                                ),
-                              );
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsets.only(
+                                          bottom: MediaQuery.of(context)
+                                              .viewInsets
+                                              .bottom),
+                                      child: const JoinForm(),
+                                    ),
+                                  );
                                 },
                                 child: const Text(
                                   "Add+",
@@ -145,13 +155,13 @@ class TeamView extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -315,7 +325,10 @@ class MemberTile extends StatelessWidget {
                   backgroundColor: Colors.white,
                   child: Text(
                     '${member.score}',
-                    style: const TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -344,25 +357,22 @@ class JoinForm extends StatefulWidget {
 }
 
 class _JoinFormState extends State<JoinForm> {
+  // final ImagePicker _picker = ImagePicker();
 
-  final ImagePicker _picker = ImagePicker();
+  // XFile? _imageFile;
 
-  XFile? _imageFile;
+  // Future<void> _pickImage(ImageSource source) async {
+  //   final XFile? pickedFile = await _picker.pickImage(source: source);
 
-  Future<void> _pickImage(ImageSource source) async {
-    final XFile? pickedFile = await _picker.pickImage(source: source);
-
-    if (pickedFile != null) {
-      setState(() {
-        _imageFile = pickedFile;
-      });
-    }
-  }
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _imageFile = pickedFile;
+  //     });
+  //   }
+  // }
 
   String? selectedValue = 'No';
 
-
-  
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
@@ -393,20 +403,32 @@ class _JoinFormState extends State<JoinForm> {
                 ],
               ),
               const SizedBox(height: 16), // Add spacing for better layout
-          
-              LabelWithAsterisk(labelText: 'Name', isRequired: true,),
+
+              const LabelWithAsterisk(
+                labelText: 'Name',
+                isRequired: true,
+              ),
               const CustomTextField(label: 'Name'),
               const SizedBox(height: 8),
-          
-              LabelWithAsterisk(labelText: 'Email', isRequired: true,),
+
+              const LabelWithAsterisk(
+                labelText: 'Email',
+                isRequired: true,
+              ),
               const CustomTextField(label: 'E-Mail'),
               const SizedBox(height: 8),
-          
-              LabelWithAsterisk(labelText: 'Phone Number', isRequired: true,),
+
+              const LabelWithAsterisk(
+                labelText: 'Phone Number',
+                isRequired: true,
+              ),
               const CustomTextField(label: 'Phone Number'),
               const SizedBox(height: 8),
-          
-              LabelWithAsterisk(labelText: 'Password', isRequired: true,),
+
+              const LabelWithAsterisk(
+                labelText: 'Password',
+                isRequired: true,
+              ),
               const CustomTextField(label: 'Password', isPassword: true),
               const SizedBox(height: 8),
               const SizedBox(
@@ -419,8 +441,10 @@ class _JoinFormState extends State<JoinForm> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-          
-                            LabelWithAsterisk(labelText: 'Gender', isRequired: true,),
+                            LabelWithAsterisk(
+                              labelText: 'Gender',
+                              isRequired: true,
+                            ),
                             CustomTextField(label: 'Gender'),
                           ],
                         ),
@@ -433,8 +457,10 @@ class _JoinFormState extends State<JoinForm> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-          
-                            LabelWithAsterisk(labelText: 'Country', isRequired: true,),
+                            LabelWithAsterisk(
+                              labelText: 'Country',
+                              isRequired: true,
+                            ),
                             CustomTextField(label: 'Country'),
                           ],
                         ),
@@ -444,12 +470,18 @@ class _JoinFormState extends State<JoinForm> {
                 ),
               ),
               const SizedBox(height: 8),
-          
-              const LabelWithAsterisk(labelText: 'Referral E-mail', isRequired: true,),
+
+              const LabelWithAsterisk(
+                labelText: 'Referral E-mail',
+                isRequired: true,
+              ),
               const CustomTextField(label: 'ref@gamil.com'),
               const SizedBox(height: 8),
-          
-              const LabelWithAsterisk(labelText: 'Up Mail', isRequired: true,),
+
+              const LabelWithAsterisk(
+                labelText: 'Up Mail',
+                isRequired: true,
+              ),
               const CustomTextField(label: 'upline@gmail.com'),
               const SizedBox(height: 8),
               const Row(
@@ -460,50 +492,48 @@ class _JoinFormState extends State<JoinForm> {
                   Text('Picture Upload'),
                 ],
               ),
-          
-          
-          //
-          //               Center(
-          //   child: Stack(
-          //     alignment: Alignment.bottomRight,
-          //     children: [
-          //       CircleAvatar(
-          //         radius: 65,
-          //         backgroundColor: Colors.green[100],
-          //         child: CircleAvatar(
-          //           radius: 60,
-          //           backgroundImage: _imageFile != null
-          //               ? FileImage(File(_imageFile!.path))
-          //               : Image.asset("assets/images/logo.JPG")
-          //                   as ImageProvider,
-          //         ),
-          //       ),
-          //       Positioned(
-          //         bottom: 4,
-          //         right: 4,
-          //         child: GestureDetector(
-          //           onTap: () {
-          //             _showImageSourceActionSheet(context);
-          //           },
-          //           child: Container(
-          //             decoration: const BoxDecoration(
-          //               shape: BoxShape.circle,
-          //               color: Colors.white,
-          //             ),
-          //             padding: const EdgeInsets.all(6),
-          //             child: const Icon(
-          //               Icons.camera_alt,
-          //               size: 20,
-          //               color: Colors.black,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          
-          
+
+              //
+              //               Center(
+              //   child: Stack(
+              //     alignment: Alignment.bottomRight,
+              //     children: [
+              //       CircleAvatar(
+              //         radius: 65,
+              //         backgroundColor: Colors.green[100],
+              //         child: CircleAvatar(
+              //           radius: 60,
+              //           backgroundImage: _imageFile != null
+              //               ? FileImage(File(_imageFile!.path))
+              //               : Image.asset("assets/images/logo.JPG")
+              //                   as ImageProvider,
+              //         ),
+              //       ),
+              //       Positioned(
+              //         bottom: 4,
+              //         right: 4,
+              //         child: GestureDetector(
+              //           onTap: () {
+              //             _showImageSourceActionSheet(context);
+              //           },
+              //           child: Container(
+              //             decoration: const BoxDecoration(
+              //               shape: BoxShape.circle,
+              //               color: Colors.white,
+              //             ),
+              //             padding: const EdgeInsets.all(6),
+              //             child: const Icon(
+              //               Icons.camera_alt,
+              //               size: 20,
+              //               color: Colors.black,
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+
               const SizedBox(height: 16),
               Align(
                 alignment: Alignment.bottomCenter,
@@ -527,37 +557,35 @@ class _JoinFormState extends State<JoinForm> {
     );
   }
 
-
-  void _showImageSourceActionSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: Wrap(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.photo_library),
-                title: const Text('Gallery'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  _pickImage(ImageSource.gallery);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.photo_camera),
-                title: const Text('Camera'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  _pickImage(ImageSource.camera);
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
+  // void _showImageSourceActionSheet(BuildContext context) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return SafeArea(
+  //         child: Wrap(
+  //           children: [
+  //             ListTile(
+  //               leading: const Icon(Icons.photo_library),
+  //               title: const Text('Gallery'),
+  //               onTap: () {
+  //                 Navigator.of(context).pop();
+  //                 _pickImage(ImageSource.gallery);
+  //               },
+  //             ),
+  //             ListTile(
+  //               leading: const Icon(Icons.photo_camera),
+  //               title: const Text('Camera'),
+  //               onTap: () {
+  //                 Navigator.of(context).pop();
+  //                 _pickImage(ImageSource.camera);
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 }
 
 class CustomTextField extends StatelessWidget {

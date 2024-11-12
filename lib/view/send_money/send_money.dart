@@ -1,5 +1,4 @@
 import 'package:fcb_global/utils/app_colors.dart';
-import 'package:fcb_global/widget/custom_button.dart';
 import 'package:fcb_global/widget/custome_textfield.dart';
 import 'package:fcb_global/widget/label_with_asterrisk.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,20 @@ class SendMoney extends StatelessWidget {
         padding: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 2),
         child: Column(
           children: [
-            Align(
+             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Send Money",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                 Align(
               alignment: Alignment.centerRight,
               child: IconButton(
                 onPressed: () {
@@ -29,6 +41,8 @@ class SendMoney extends StatelessWidget {
                 ),
               ),
             ),
+              ],
+             ),
             const SizedBox(
               height: 15,
             ),

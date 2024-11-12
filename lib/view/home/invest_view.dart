@@ -15,23 +15,38 @@ class InvestView extends StatelessWidget {
           body: SingleChildScrollView(
             child: Padding(
               padding:
-                  const EdgeInsets.only(left: 15, top: 2, right: 15, bottom: 5),
+                  const EdgeInsets.only(left: 16, top: 5, right: 16, bottom: 5),
               child: Column(
                 children: [
                   Center(
                     child: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: const Icon(
-                              Icons.cancel,
-                              color: Colors.red,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Invest",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon: const Icon(
+                                  Icons.cancel,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         const Icon(
                           Icons.api_outlined,
@@ -41,10 +56,7 @@ class InvestView extends StatelessWidget {
                         const SizedBox(
                           height: 5,
                         ),
-                        const Text(
-                          "Invest",
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
+                       
                         const Text(
                           "Welcome For Invest",
                           style: TextStyle(fontSize: 18, color: Colors.white),

@@ -11,21 +11,42 @@ class About extends StatelessWidget {
         child: Scaffold(
       backgroundColor: AppColors.appcolor,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:
+            const EdgeInsets.only(left: 16.0, right: 16.0, top: 5, bottom: 5),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.red,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "About",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(
+                      Icons.cancel,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+              ],
             ),
+
+            SizedBox(
+              height: 10,
+            ),
+
             //about list tile 1
             const ListTile(
               leading: CircleAvatar(

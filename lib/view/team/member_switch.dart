@@ -13,125 +13,147 @@ class MemberSwitch extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.appcolor,
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.red,
-                ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-            ),
 
-            buildRating(),
-
-            ratingwithdimond(),
-
-            HeaderWithTeams(),
-
-            const SizedBox(height: 20),
-
-            // Team member section
-            Expanded(
-              child: Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        TeamList(
-                          teamScore: 5,
-                          members: List.generate(
-                            1,
-                            (index) => MemberData('MD. Tamim',
-                                'tamin@gmail.com', 'Ref:Md.Korim', 0),
-                          ),
-                        ),
-                        Positioned(
-                          right: 50,
-                          bottom: 300,
-                          child: TextButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) => Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom),
-                                  child: JoinForm(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Add+",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Team ",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const Dash(
-                      direction: Axis.vertical,
-                      length: 150,
-                      dashLength: 5,
-                      dashColor: Colors.white),
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        TeamList(
-                          teamScore: 3,
-                          members: List.generate(
-                            1,
-                            (index) => MemberData('MD.Shakib',
-                                'shakib@gmail.com', 'Ref:Md.Taher', 2),
-                          ),
-                        ),
-                        Positioned(
-                          right: 50,
-                          bottom: 300,
-                          child: TextButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) => Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom),
-                                  child: JoinForm(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              "Add+",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+
+              const SizedBox(
+                height: 15,
+              ),
+
+              buildRating(),
+
+              ratingwithdimond(),
+
+              const HeaderWithTeams(),
+
+              const SizedBox(height: 20),
+
+              // Team member section
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          TeamList(
+                            teamScore: 5,
+                            members: List.generate(
+                              1,
+                              (index) => MemberData('MD. Tamim',
+                                  'tamin@gmail.com', 'Ref:Md.Korim', 0),
+                            ),
+                          ),
+                          Positioned(
+                            right: 50,
+                            bottom: 300,
+                            child: TextButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (context) => Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom),
+                                    child: const JoinForm(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                "Add+",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Dash(
+                        direction: Axis.vertical,
+                        length: 150,
+                        dashLength: 5,
+                        dashColor: Colors.white),
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          TeamList(
+                            teamScore: 3,
+                            members: List.generate(
+                              1,
+                              (index) => MemberData('MD.Shakib',
+                                  'shakib@gmail.com', 'Ref:Md.Taher', 2),
+                            ),
+                          ),
+                          Positioned(
+                            right: 50,
+                            bottom: 300,
+                            child: TextButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (context) => Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom),
+                                    child: const JoinForm(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                "Add+",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -155,9 +177,7 @@ class MemberSwitch extends StatelessWidget {
             Icons.star,
             color: Colors.amber,
           ),
-          onRatingUpdate: (rating) {
-            print(rating);
-          },
+          onRatingUpdate: (rating) {},
         ),
         const Icon(
           Icons.diamond,
@@ -175,7 +195,7 @@ buildRating() {
         radius: 37,
         child: CircleAvatar(
           radius: 35,
-          backgroundImage: AssetImage(AppAssets.biden),
+          backgroundImage: AssetImage(AppAssets.trump),
         ),
       ),
       Text(
@@ -219,6 +239,8 @@ buildRatingTeam() {
 }
 
 class HeaderWithTeams extends StatelessWidget {
+  const HeaderWithTeams({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -248,7 +270,7 @@ class TeamList extends StatelessWidget {
   final int teamScore;
   final List<MemberData> members;
 
-  TeamList({required this.teamScore, required this.members});
+  const TeamList({super.key, required this.teamScore, required this.members});
 
   @override
   Widget build(BuildContext context) {
@@ -286,11 +308,11 @@ class TeamList extends StatelessWidget {
 class MemberTile extends StatelessWidget {
   final MemberData member;
 
-  MemberTile({required this.member});
+  const MemberTile({super.key, required this.member});
 
   @override
   Widget build(BuildContext context) {
-    return Padding( 
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
         children: [
@@ -493,35 +515,35 @@ class _JoinFormState extends State<JoinForm> {
   }
 
   ///botom sheet for gallery and camera
-  void _showImageSourceActionSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: Wrap(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.photo_library),
-                title: const Text('Gallery'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  //_pickImage(ImageSource.gallery);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.photo_camera),
-                title: const Text('Camera'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  //_pickImage(ImageSource.camera);
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+  // void _showImageSourceActionSheet(BuildContext context) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return SafeArea(
+  //         child: Wrap(
+  //           children: [
+  //             ListTile(
+  //               leading: const Icon(Icons.photo_library),
+  //               title: const Text('Gallery'),
+  //               onTap: () {
+  //                 Navigator.of(context).pop();
+  //                 //_pickImage(ImageSource.gallery);
+  //               },
+  //             ),
+  //             ListTile(
+  //               leading: const Icon(Icons.photo_camera),
+  //               title: const Text('Camera'),
+  //               onTap: () {
+  //                 Navigator.of(context).pop();
+  //                 //_pickImage(ImageSource.camera);
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 }
 
 ///custom text field.
@@ -530,8 +552,7 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword;
 
   const CustomTextField(
-      {Key? key, required this.label, this.isPassword = false})
-      : super(key: key);
+      {super.key, required this.label, this.isPassword = false});
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ class CustomTextField extends StatelessWidget {
   final double? height;
   final Color ? fillColor;
   const CustomTextField({
-    Key? key,
+    super.key,
     this.controller,
     this.keyboardType,
     this.validator,
@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
     this.radius = 5,
     this.height,
     this.fillColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class CustomTextField extends StatelessWidget {
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
               label: label,
-              labelStyle: TextStyle(color: Colors.black),
-              hintStyle: TextStyle(color: Color(0xFF9A9A9A)),
+              labelStyle: const TextStyle(color: Colors.black),
+              hintStyle: const TextStyle(color: Color(0xFF9A9A9A)),
             ),
           ),
         ),

@@ -8,7 +8,6 @@ import 'package:fcb_global/view/team/team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -29,7 +28,6 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-
               Container(
                 padding: const EdgeInsets.only(
                     right: 15, left: 15, bottom: 5, top: 2),
@@ -40,7 +38,8 @@ class _HomeViewState extends State<HomeView> {
                       alignment: Alignment.centerLeft,
                       child: IconButton(
                         onPressed: () {
-                          Get.to(const Setting(), transition: Transition.rightToLeftWithFade);
+                          Get.to(const Setting(),
+                              transition: Transition.rightToLeftWithFade);
                         },
                         icon: const Icon(
                           Icons.settings,
@@ -277,6 +276,9 @@ class _HomeViewState extends State<HomeView> {
               style: TextStyle(fontSize: 16),
             ),
           ),
+          const SizedBox(
+            width: 2,
+          )
         ],
       ),
     );
@@ -395,9 +397,7 @@ class _HomeViewState extends State<HomeView> {
             Icons.star,
             color: Colors.amber,
           ),
-          onRatingUpdate: (rating) {
-            print(rating);
-          },
+          onRatingUpdate: (rating) {},
         ),
       ],
     );
@@ -413,7 +413,8 @@ class _HomeViewState extends State<HomeView> {
           Expanded(
             flex: 1,
             child: InkWell(
-              onTap: () => Get.to(() => const PackageView(), transition: Transition.rightToLeftWithFade),
+              onTap: () => Get.to(() => const PackageView(),
+                  transition: Transition.rightToLeftWithFade),
               child: const Column(
                 children: [
                   Icon(
@@ -433,7 +434,8 @@ class _HomeViewState extends State<HomeView> {
           Expanded(
             flex: 1,
             child: InkWell(
-              onTap: () => Get.to(() => const InvestView(), transition: Transition.rightToLeftWithFade),
+              onTap: () => Get.to(() => const InvestView(),
+                  transition: Transition.rightToLeftWithFade),
               child: const Column(
                 children: [
                   Icon(
@@ -454,7 +456,8 @@ class _HomeViewState extends State<HomeView> {
             flex: 1,
             child: InkWell(
               onTap: () {
-                Get.to(() => const TeamView(), transition: Transition.rightToLeftWithFade);
+                Get.to(() => const TeamView(),
+                    transition: Transition.rightToLeftWithFade);
               },
               child: const Column(
                 children: [
