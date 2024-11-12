@@ -24,10 +24,13 @@ class LoginController extends GetxController {
     var emailController = email.value;
     var passwordConteoller = password.value;
 
-    if (email.value.isEmpty || password.value.isEmpty) {
-      Get.snackbar('Error', 'Please enter both email and password');
-      return;
-    }
+    print("emailController ==========$emailController");
+    print("passwordController ==========$passwordConteoller");
+
+    // if (email.value.isEmpty || password.value.isEmpty) {
+    //   Get.snackbar('Error', 'Please enter both email and password');
+    //   return;
+    // }
 
     try {
       isLoading.value = true;
@@ -44,19 +47,24 @@ class LoginController extends GetxController {
       }
 
       // Use HTTPS endpoint
+      //https://fcbglobal.uk/api/v1/login
+      // client_id
+      //password
+      //user_id
+      //
       final response = await dio.post(
         'https://fcbglobal.uk/api/v1/login', // Ensure this is HTTPS
         data: {
-          'client_id': clientId,
+          //'client_id': clientId,
           //'data': password.value,
-          'app_id': 1001,
+          //'app_id': 1001,
           'user_id': emailController,
           'password': passwordConteoller
         },
         options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          // headers: {
+          //   'Content-Type': 'application/json',
+          // },
         ),
       );
 
@@ -67,7 +75,7 @@ class LoginController extends GetxController {
       } else {
         Get.snackbar('Error', 'Login failed. Please try again.', 
         backgroundColor: Colors.red,
-        
+
 
         );
       }
