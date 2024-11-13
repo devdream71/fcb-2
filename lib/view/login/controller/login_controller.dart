@@ -46,17 +46,18 @@ class LoginController extends GetxController {
           // Save the token if present
           await saveToken(token);
           debugPrint('Token: $token');
-          Get.to(() => const HomeView());  
-          Get.snackbar('Success', 'Login successful');
+          Get.to(() => const HomeView());
+          Get.snackbar('Success', 'Login successful',
+              backgroundColor: Colors.green, margin: const EdgeInsets.all(2));
         } else {
           // Handle the case where the response is in JSON format and contains a token
           final Map<String, dynamic> responseJson = json.decode(responseBody);
           final token = responseJson['token'];
 
           if (token != null) {
-            await saveToken(token);  
+            await saveToken(token);
             debugPrint('Token: $token');
-            Get.to(() => const HomeView());  
+            Get.to(() => const HomeView());
             Get.snackbar('Success', 'Login successful',
                 backgroundColor: Colors.green, margin: const EdgeInsets.all(2));
           } else {
@@ -79,13 +80,14 @@ class LoginController extends GetxController {
         Get.snackbar(
           'Error',
           'Invalid email or password',
-           backgroundColor: Colors.red,
+          backgroundColor: Colors.red,
         );
       }
     } catch (e) {
       // Print the error message to the terminal for debugging
       print('Error: $e');
-      Get.snackbar('Error', 'Invalid email or password', backgroundColor: Colors.red);
+      Get.snackbar('Error', 'Invalid email or password',
+          backgroundColor: Colors.red);
     } finally {
       isLoading.value = false;
     }
