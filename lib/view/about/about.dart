@@ -1,90 +1,142 @@
 import 'package:fcb_global/utils/app_colors.dart';
+import 'package:fcb_global/view/about/controller/about_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class About extends StatelessWidget {
-  const About({super.key});
+  final UserController userController = Get.put(UserController());
+
+  About({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Trigger data fetch
+    userController.fetchUserInfo();
+
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: AppColors.appcolor,
-      body: Padding(
-        padding:
-            const EdgeInsets.only(left: 16.0, right: 16.0, top: 5, bottom: 5),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Align(
-                  alignment: Alignment.center,
-                  child: Text(
+      child: Scaffold(
+        backgroundColor: AppColors.appcolor,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
                     "About",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
+                  IconButton(
+                    onPressed: () => Get.back(),
                     icon: const Icon(
                       Icons.cancel,
                       color: Colors.red,
                     ),
                   ),
-                ),
-              ],
-            ),
-
-            SizedBox(
-              height: 10,
-            ),
-
-            //about list tile 1
-            const ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(Icons.person),
+                ],
               ),
-              title: Text(
-                "Name",
-                style: TextStyle(color: Colors.white),
-              ),
-              subtitle: Text(
-                "Harish",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 20),
-              ),
-            ),
-            //about list tile 2
-            const ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.email),
-              ),
-              title: Text(
-                "Email",
-                style: TextStyle(color: Colors.white),
-              ),
-              subtitle: Text(
-                "haaarshraj@gmail.com",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 20),
-              ),
-            ),
-          ],
+              const SizedBox(height: 10),
+              Obx(() {
+                if (userController.isLoading.value) {
+                  return const CircularProgressIndicator();
+                } else if (userController.errorMessage.isNotEmpty) {
+                  return Text(
+                    userController.errorMessage.value,
+                    style: const TextStyle(color: Colors.red),
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.person),
+                        ),
+                        title: const Text(
+                          "Name",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          userController.name.value,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.phone),
+                        ),
+                        title: const Text(
+                          "Phone",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          userController.phone.value,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.email),
+                        ),
+                        title: const Text(
+                          "Email",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          userController.email.value,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.person_outline),
+                        ),
+                        title: const Text(
+                          "Gender",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          userController.gender.value,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+              }),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }
+
+
+
+
+ 

@@ -16,7 +16,7 @@ class SendMoney extends StatelessWidget {
         padding: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 2),
         child: Column(
           children: [
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Align(
@@ -29,20 +29,20 @@ class SendMoney extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                 Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.red,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(
+                      Icons.cancel,
+                      color: Colors.red,
+                    ),
+                  ),
                 ),
-              ),
-            ),
               ],
-             ),
+            ),
             const SizedBox(
               height: 15,
             ),

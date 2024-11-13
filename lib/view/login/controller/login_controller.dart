@@ -1,88 +1,236 @@
-import 'package:dio/dio.dart';
-import 'package:fcb_global/view/login/model/login_model.dart';
+import 'dart:convert'; // For JSON decoding
+import 'package:fcb_global/view/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:fcb_global/view/home/home_view.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-  var isPasswordVisible = false.obs;
   var email = ''.obs;
   var password = ''.obs;
   var isLoading = false.obs;
+  var isPasswordVisible = false.obs;
 
   // Toggle password visibility
   void togglePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;
   }
 
-  // Login API call
+  // Login function
   Future<void> login() async {
-
-    //email and password controller
-
-    var emailController = email.value;
-    var passwordConteoller = password.value;
-
-    print("emailController ==========$emailController");
-    print("passwordController ==========$passwordConteoller");
-
-    // if (email.value.isEmpty || password.value.isEmpty) {
-    //   Get.snackbar('Error', 'Please enter both email and password');
-    //   return;
-    // }
-
+    isLoading.value = true;
     try {
-      isLoading.value = true;
-      Dio dio = Dio();
-
-      // Retrieve client_id from SharedPreferences
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      int? clientId = prefs.getInt('client_id');
-
-      if (clientId == null) {
-        Get.snackbar('Error', 'Client ID is not available');
-        isLoading.value = false;
-        return;
-      }
-
-      // Use HTTPS endpoint
-      //https://fcbglobal.uk/api/v1/login
-      // client_id
-      //password
-      //user_id
-      //
-      final response = await dio.post(
-        'https://fcbglobal.uk/api/v1/login', // Ensure this is HTTPS
-        data: {
-          //'client_id': clientId,
-          //'data': password.value,
-          //'app_id': 1001,
-          'user_id': emailController,
-          'password': passwordConteoller
+      final response = await http.post(
+        Uri.parse('https://fcbglobal.uk/api/v1/login'),
+        headers: {
+          'Content-Type': 'application/json',
         },
-        options: Options(
-          // headers: {
-          //   'Content-Type': 'application/json',
-          // },
-        ),
+        body: json.encode({
+          'password': password.value,
+          'user_id': email.value,
+        }),
       );
 
-      // Check the response status
+      // Print the response status and body to the terminal for debugging
+      debugPrint('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
       if (response.statusCode == 200) {
-        final loginResponse = LoginResponseModel.fromJson(response.data);
-        Get.to(() => const HomeView());
+        String responseBody = response.body;
+
+        // Check if the response body starts with a number (indicating it's just the token)
+        if (responseBody.contains('|')) {
+          // Extract the token from the response
+          final token = responseBody.split('|')[1];
+
+          // Save the token if present
+          await saveToken(token);
+          debugPrint('Token: $token');
+          Get.to(() => const HomeView());  
+          Get.snackbar('Success', 'Login successful');
+        } else {
+          // Handle the case where the response is in JSON format and contains a token
+          final Map<String, dynamic> responseJson = json.decode(responseBody);
+          final token = responseJson['token'];
+
+          if (token != null) {
+            await saveToken(token);  
+            debugPrint('Token: $token');
+            Get.to(() => const HomeView());  
+            Get.snackbar('Success', 'Login successful',
+                backgroundColor: Colors.green, margin: const EdgeInsets.all(2));
+          } else {
+            // Show error message if token is missing
+            Get.snackbar('Error', 'Invalid email or password',
+                backgroundColor: Colors.red, margin: const EdgeInsets.all(2));
+          }
+
+          //
+          if (token != null) {
+            await saveToken(token);
+            Get.to(() => const HomeView());
+          } else {
+            Get.snackbar('Error', 'Invalid email or password',
+                backgroundColor: Colors.red, margin: const EdgeInsets.all(2));
+          }
+        }
       } else {
-        Get.snackbar('Error', 'Login failed. Please try again.', 
-        backgroundColor: Colors.red,
-
-
+        // Handle errors from the server, such as invalid credentials
+        Get.snackbar(
+          'Error',
+          'Invalid email or password',
+           backgroundColor: Colors.red,
         );
       }
     } catch (e) {
-      Get.snackbar('Error', 'Something went wrong. Please try again later.');
+      // Print the error message to the terminal for debugging
+      print('Error: $e');
+      Get.snackbar('Error', 'Invalid email or password', backgroundColor: Colors.red);
     } finally {
       isLoading.value = false;
     }
   }
+
+  // Save the token to SharedPreferences
+  Future<void> saveToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('auth_token', token); // Save the token
+  }
 }
+
+
+
+
+
+
+////=====working
+
+// import 'dart:convert';
+
+// import 'package:fcb_global/view/home/home_view.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:http/http.dart' as http;
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// class LoginController extends GetxController {
+//   var email = ''.obs;
+//   var password = ''.obs;
+//   var isLoading = false.obs;
+//   var isPasswordVisible = false.obs;
+
+//   void togglePasswordVisibility() {
+//     isPasswordVisible.value = !isPasswordVisible.value;
+//   }
+
+//   Future<void> login() async {
+//     isLoading.value = true;
+//     try {
+//       final response = await http.post(
+//         Uri.parse('https://fcbglobal.uk/api/v1/login'),
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: '{"password": "${password.value}", "user_id": "${email.value}"}',
+//       );
+
+//       // Print the response status and body to the terminal
+//       print('Response status: ${response.statusCode}');
+//       print('Response body: ${response.body}');
+
+//       if (response.statusCode == 200) {
+//         // Handle a successful response
+//         final token = response.body;
+//         await saveToken(token);
+//         print('token: ${token}');
+
+//         Get.to(() => const HomeView());
+//         Get.snackbar('Success', 'Login successful');
+//         // Navigate to Home or another screen if needed
+//       } else {
+//         // Handle errors from server
+//         Get.snackbar('Error', 'Invalid email or password');
+//       }
+//     } catch (e) {
+//       // Print error message to terminal for debugging
+//       print('Error: $e');
+//       Get.snackbar('Error', 'An error occurred. Please try again.');
+//     } finally {
+//       isLoading.value = false;
+//     }
+//   }
+
+//   Future<void> saveToken(String token) async {
+//     final prefs = await SharedPreferences.getInstance();
+//     await prefs.setString('auth_token', token);
+//   }
+// }
+
+
+
+
+// import 'package:fcb_global/view/home/home_view.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:http/http.dart' as http;
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'dart:convert';
+
+// class LoginController extends GetxController {
+//   var email = ''.obs;
+//   var password = ''.obs;
+//   var isLoading = false.obs;
+//   var isPasswordVisible = false.obs;
+
+//   void togglePasswordVisibility() {
+//     isPasswordVisible.value = !isPasswordVisible.value;
+//   }
+
+//   Future<void> login() async {
+//     isLoading.value = true;
+//     try {
+//       final response = await http.post(
+//         Uri.parse('https://fcbglobal.uk/api/v1/login'),
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: '{"password": "${password.value}", "user_id": "${email.value}"}',
+//       );
+
+//       // Print the response status and body to the terminal
+//       print('Response status: ${response.statusCode}');
+//       print('Response body: ${response.body}');
+
+//       if (response.statusCode == 200) {
+//         // Handle a successful response
+//         final data = json.decode(response.body);
+//         final token = data['token'];  // Assuming the token is in the 'token' field
+
+//         if (token != null) {
+//           await saveToken(token);
+//           print('Token saved: $token');
+//           Get.to(() => const HomeView());  // Navigate to HomeView
+//           Get.snackbar('Success', 'Login successful');
+//         } else {
+//           Get.snackbar('Error', 'Token not found in response');
+//         }
+//       } else {
+//         // Handle errors from server
+//         Get.snackbar('Error', 'Invalid email or password');
+//       }
+//     } catch (e) {
+//       // Print error message to terminal for debugging
+//       print('Error: $e');
+//       Get.snackbar('Error', 'An error occurred. Please try again.');
+//     } finally {
+//       isLoading.value = false;
+//     }
+//   }
+
+//   // Save the token to SharedPreferences
+//   Future<void> saveToken(String token) async {
+//     final prefs = await SharedPreferences.getInstance();
+//     await prefs.setString('auth_token', token);
+//     print('Token saved to SharedPreferences');
+//   }
+// }

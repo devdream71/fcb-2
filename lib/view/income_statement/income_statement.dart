@@ -56,11 +56,17 @@ class IncomeStatement extends StatelessWidget {
                 children: [
                   Text(
                     "Amount: \$ 500",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
                   Text(
                     "Wallet: \$ 1250",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
@@ -69,11 +75,17 @@ class IncomeStatement extends StatelessWidget {
                 children: [
                   Text(
                     "Investment: \$ 5250",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
                   ),
                   Text(
                     "Date: Feb 12, 2024",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -83,11 +95,17 @@ class IncomeStatement extends StatelessWidget {
                 children: [
                   Text(
                     "Status: Active",
-                    style: TextStyle(color: Colors.green, fontSize: 14),
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
                   ),
                   Text(
                     "Type: Pro",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -107,7 +125,10 @@ class IncomeStatement extends StatelessWidget {
                 children: [
                   Text(
                     "Amount: \$ 500",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
                   Text(
                     "Wallet: \$ 1250",

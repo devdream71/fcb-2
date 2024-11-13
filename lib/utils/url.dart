@@ -4,5 +4,10 @@ class APPURI {
 
   static const String getKey = 'https://fcbglobal.uk/api/v1/get-key';
 
+  static const String home = 'https://fcbglobal.uk/api/v1/inject';
+
+
+
+
 
 }

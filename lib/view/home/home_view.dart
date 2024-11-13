@@ -1,8 +1,9 @@
 import 'package:fcb_global/utils/app_assets.dart';
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/utils/app_space.dart';
-import 'package:fcb_global/view/home/invest_view.dart';
-import 'package:fcb_global/view/home/pacakage_view.dart';
+import 'package:fcb_global/view/about/controller/about_controller.dart';
+import 'package:fcb_global/view/invest/invest_view.dart';
+import 'package:fcb_global/view/package/pacakage_view.dart';
 import 'package:fcb_global/view/settings/settings.dart';
 import 'package:fcb_global/view/team/team.dart';
 import 'package:flutter/material.dart';
@@ -192,7 +193,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  // Show income list
+  // Show income list //recceive money =====>
   Widget buildShowIncome() {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
@@ -240,8 +241,10 @@ class _HomeViewState extends State<HomeView> {
 
   // Balance widget
   Widget buildBalance() {
+    final UserController userController = Get.put(UserController());
+    userController.fetchUserInfo();
     return Container(
-      height: 70,
+      height: 80,
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -251,30 +254,73 @@ class _HomeViewState extends State<HomeView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
+          const SizedBox(width: 8),
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Total Balance",
                 style: TextStyle(fontSize: 16),
               ),
-              Text(
-                "520\$",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              Obx(() {
+                if (userController.isLoading.value) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (userController.errorMessage.isNotEmpty) {
+                  return Text(
+                    userController.errorMessage.value,
+                    style: const TextStyle(color: Colors.red),
+                  );
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Text(
+                        //   '${userController.myWallet.value}',
+                        //   style: const TextStyle(
+                        //     fontSize: 24,
+                        //     fontWeight: FontWeight.bold,
+                        //     color: Colors.green,
+                        //   ),
+                        // )
+                        Text(
+  '${double.tryParse(userController.myWallet.value.toString()) ?? 0.0}', // Convert to double or default to 0.0 if parsing fails
+  style: const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.green,
+  ),
+)
+                      ],
+                    ),
+                  );
+                }
+              }),
             ],
           ),
-          Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(8),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.4),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.yellow,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Text(
+                "Withdraw",
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            child: const Text(
-              "Withdraw",
-              style: TextStyle(fontSize: 16),
-            ),
+          ),
+          Align(alignment:  Alignment.centerRight,
+          child: Container(
+           padding: const EdgeInsets.all(2),
+
+          ),
           ),
           const SizedBox(
             width: 2,

@@ -2,8 +2,9 @@ import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/about/about.dart';
 import 'package:fcb_global/view/deposit/deposit.dart';
 import 'package:fcb_global/view/home/home_view.dart';
-import 'package:fcb_global/view/home/invest_view.dart';
-import 'package:fcb_global/view/home/pacakage_view.dart';
+import 'package:fcb_global/view/income_statement/receive_money.dart';
+import 'package:fcb_global/view/invest/invest_view.dart';
+import 'package:fcb_global/view/package/pacakage_view.dart';
 import 'package:fcb_global/view/login/login_view.dart';
 import 'package:fcb_global/view/my_wallet/my_wallet.dart';
 import 'package:fcb_global/view/notification/notification.dart';
@@ -95,7 +96,7 @@ class Setting extends StatelessWidget {
                       ListTile(
                         minTileHeight: 40,
                         onTap: () {
-                          Get.to(const MyWallet(),
+                          Get.to(MyWallet(),
                               transition: Transition.rightToLeftWithFade);
                         },
                         title: const Text("My Wallet",
@@ -116,7 +117,7 @@ class Setting extends StatelessWidget {
                       ListTile(
                         minTileHeight: 40,
                         onTap: () {
-                          Get.to(const About(),
+                          Get.to(About(),
                               transition: Transition.rightToLeftWithFade);
                         },
                         title: const Text("About",
@@ -298,6 +299,26 @@ class Setting extends StatelessWidget {
                               transition: Transition.rightToLeftWithFade);
                         },
                         title: const Text("Change Password",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14)),
+                        //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
+                        leading: const CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.red,
+                            child: Icon(
+                              Icons.lock_reset,
+                              color: Colors.white,
+                              size: 18,
+                            )),
+                      ),
+                      //recive money
+                      ListTile(
+                        minTileHeight: 40,
+                        onTap: () {
+                          Get.to(const ReceiveMoney(),
+                              transition: Transition.rightToLeftWithFade);
+                        },
+                        title: const Text("Receive Money",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 14)),
                         //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),

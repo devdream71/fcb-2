@@ -62,6 +62,9 @@ class NotificationDetails extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 12)),
             const Text("End Date: June 14, 2025",
                 style: TextStyle(color: Colors.white, fontSize: 12)),
+
+            //
+            Text('data'),    
             const SizedBox(
               height: 30,
             ),

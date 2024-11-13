@@ -1,18 +1,9 @@
- 
+ class LoginResponse {
+  final String token;
 
-class LoginResponseModel {
-  final String clientId;
-  final String data;
+  LoginResponse({required this.token});
 
-  LoginResponseModel({required this.clientId, required this.data});
-
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel(
-      clientId: json['client_id'] ?? '',
-      data: json['data'] ?? '',
-    );
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(token: json['token']);
   }
 }
-
-
- 
