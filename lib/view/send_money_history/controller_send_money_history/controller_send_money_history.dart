@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ReceiveMoneyController extends GetxController {
+class SendMoneyController extends GetxController {
   // About section
   RxString name = ''.obs;
   RxString phone = ''.obs;
@@ -78,10 +78,17 @@ void onInit() {
         }
 
         // Extract receive_money data and format it
-        final receiveMoneyData = data['receive_money'] as Map<String, dynamic>? ?? {};
-        receiveMoney.value = receiveMoneyData.entries
+        final sendMoneyData = data['sent_money'] as Map<String, dynamic>? ?? {};
+        receiveMoney.value = sendMoneyData.entries
             .map((entry) => '${entry.key}: ${entry.value}')
             .join('\n');  // Format each entry as "date-time: amount"
+
+
+       
+       //
+       
+       
+
 
       } else {
         errorMessage.value = 'Error ${response.statusCode}: ${response.reasonPhrase}';

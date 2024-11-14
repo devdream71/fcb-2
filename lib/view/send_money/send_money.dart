@@ -1,4 +1,5 @@
 import 'package:fcb_global/utils/app_colors.dart';
+import 'package:fcb_global/view/send_money_history/view_send_money_history/view_send_money_history.dart';
 import 'package:fcb_global/widget/custome_textfield.dart';
 import 'package:fcb_global/widget/label_with_asterrisk.dart';
 import 'package:flutter/material.dart';
@@ -150,7 +151,38 @@ class SendMoney extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-            )
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              "Send Money History",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            InkWell(
+              onTap: () {
+                Get.to(SendMoneyPage(),
+                    transition: Transition.rightToLeftWithFade);
+              },
+              child: Container(
+                height: 45,
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(8)),
+                child: const Text(
+                  "Send Money History",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),
+                ),
+              ),
+            ),
           ],
         ),
       ),

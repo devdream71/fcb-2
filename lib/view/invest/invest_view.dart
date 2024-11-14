@@ -1,5 +1,6 @@
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/utils/app_space.dart';
+import 'package:fcb_global/view/invest_history/investment_history_view/investment_history_view.dart';
 import 'package:fcb_global/widget/custome_textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +57,6 @@ class InvestView extends StatelessWidget {
                         const SizedBox(
                           height: 5,
                         ),
-                       
                         const Text(
                           "Welcome For Invest",
                           style: TextStyle(fontSize: 18, color: Colors.white),
@@ -114,6 +114,43 @@ class InvestView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  const Text(
+                    "Investment History",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.to(InvestmentPage(),
+                          transition: Transition.rightToLeftWithFade);
+                    },
+                    child: Container(
+                      height: 45,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: const Text(
+                        "Investment History",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+
+
+                   
+
+
                 ],
               ),
             ),

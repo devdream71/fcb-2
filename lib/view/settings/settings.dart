@@ -8,6 +8,7 @@ import 'package:fcb_global/view/package/pacakage_view.dart';
 import 'package:fcb_global/view/login/login_view.dart';
 import 'package:fcb_global/view/my_wallet/my_wallet.dart';
 import 'package:fcb_global/view/notification/notification.dart';
+import 'package:fcb_global/view/receive_money/receive_moneytwo.dart';
 import 'package:fcb_global/view/send_money/send_money.dart';
 import 'package:fcb_global/view/team/team.dart';
 import 'package:fcb_global/view/withdraw/withdraw.dart';
@@ -315,10 +316,10 @@ class Setting extends StatelessWidget {
                       ListTile(
                         minTileHeight: 40,
                         onTap: () {
-                          Get.to(const ReceiveMoney(),
+                          Get.to(ReceiveMoneyPage(),
                               transition: Transition.rightToLeftWithFade);
                         },
-                        title: const Text("Receive Money",
+                        title: const Text("Receive Money History",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 14)),
                         //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),

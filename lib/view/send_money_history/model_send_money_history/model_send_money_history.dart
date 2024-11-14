@@ -1,4 +1,4 @@
-class ReceiveMoneyApiResponse {
+class SendMoneyApiResponse {
   List<dynamic> myRefer;
   dynamic notification;
   UserInfo userInfo;
@@ -7,10 +7,10 @@ class ReceiveMoneyApiResponse {
   List<String> incomeType;
   List<dynamic> incomeList;
   Map<String, int> packages;
-  List<dynamic> sentMoney;
+  Map<String, dynamic> sentMoney;
   Map<String, dynamic> receiveMoney; // Updated to Map<String, dynamic>
 
-  ReceiveMoneyApiResponse({
+  SendMoneyApiResponse({
     required this.myRefer,
     required this.notification,
     required this.userInfo,
@@ -23,8 +23,8 @@ class ReceiveMoneyApiResponse {
     required this.receiveMoney,
   });
 
-  factory ReceiveMoneyApiResponse.fromJson(Map<String, dynamic> json) {
-    return ReceiveMoneyApiResponse(
+  factory SendMoneyApiResponse.fromJson(Map<String, dynamic> json) {
+    return SendMoneyApiResponse(
       myRefer: json['myRefer'] ?? [],
       notification: json['notification'],
       userInfo: UserInfo.fromJson(json['userInfo']),
@@ -33,7 +33,7 @@ class ReceiveMoneyApiResponse {
       incomeType: List<String>.from(json['income_type'] ?? []),
       incomeList: json['income_list'] ?? [],
       packages: Map<String, int>.from(json['packages'] ?? {}),
-      sentMoney: json['sent_money'] ?? [],
+      sentMoney: Map<String, dynamic>.from(json['sent_money'] ?? {}),
       receiveMoney: Map<String, dynamic>.from(json['receive_money'] ?? {}), // Updated parsing
     );
   }
