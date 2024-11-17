@@ -3,6 +3,7 @@ import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/invest_history/invesment_controller/investment_history_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class InvestmentPage extends StatelessWidget {
   final InvestmentController controller = Get.put(InvestmentController());
@@ -81,6 +82,14 @@ class InvestmentPage extends StatelessWidget {
                               ),
                               Text(
                                 'Daily Return: ${investment.package.dailyReturnOfInvest}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                'Start Date: ${investment.investmentStartDate}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                'End Date ${investment.investmentEndDate}',
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ],

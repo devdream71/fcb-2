@@ -37,6 +37,9 @@ class SendMoneyApiResponse {
       receiveMoney: Map<String, dynamic>.from(json['receive_money'] ?? {}), // Updated parsing
     );
   }
+
+   
+
 }
 
 class UserInfo {

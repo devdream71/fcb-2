@@ -83,6 +83,9 @@ class WithdrawHistory extends StatelessWidget {
                         "Status: Active",
                         style: TextStyle(color: Colors.green),
                       ),
+
+
+                      
                     ],
                   ),
                 ),

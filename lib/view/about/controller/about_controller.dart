@@ -27,8 +27,6 @@ class UserController extends GetxController {
   //receive_money
   
 
-
-
   var token = ''.obs;
 
   // Load token from SharedPreferences

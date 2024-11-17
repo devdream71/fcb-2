@@ -2,6 +2,7 @@ import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/about/about.dart';
 import 'package:fcb_global/view/deposit/deposit.dart';
 import 'package:fcb_global/view/home/home_view.dart';
+import 'package:fcb_global/view/income/income_view/income_view.dart';
 import 'package:fcb_global/view/income_statement/receive_money.dart';
 import 'package:fcb_global/view/invest/invest_view.dart';
 import 'package:fcb_global/view/package/pacakage_view.dart';
@@ -9,6 +10,7 @@ import 'package:fcb_global/view/login/login_view.dart';
 import 'package:fcb_global/view/my_wallet/my_wallet.dart';
 import 'package:fcb_global/view/notification/notification.dart';
 import 'package:fcb_global/view/receive_money/receive_moneytwo.dart';
+import 'package:fcb_global/view/refer/refer_view/refer_view.dart';
 import 'package:fcb_global/view/send_money/send_money.dart';
 import 'package:fcb_global/view/team/team.dart';
 import 'package:fcb_global/view/withdraw/withdraw.dart';
@@ -174,6 +176,27 @@ class Setting extends StatelessWidget {
                               size: 18,
                             )),
                       ),
+                      //income ===
+                      ListTile(
+                        minTileHeight: 40,
+                        onTap: () {
+                          Get.to(const IncomeView(),
+                              transition: Transition.rightToLeftWithFade);
+                        },
+                        title: const Text("Income",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14)),
+                        //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
+                        leading: const CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.red,
+                            child: Icon(
+                              Icons.description,
+                              color: Colors.white,
+                              size: 18,
+                            )),
+                      ),
+                      //package
                       ListTile(
                         minTileHeight: 40,
                         onTap: () {
@@ -193,6 +216,29 @@ class Setting extends StatelessWidget {
                               size: 18,
                             )),
                       ),
+
+                      //my refer
+                      ListTile(
+                        minTileHeight: 40,
+                        onTap: () {
+                          Get.to(MyReferPage(),
+                              transition: Transition.rightToLeftWithFade);
+                        },
+                        title: const Text("My Refer",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14)),
+                        //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
+                        leading: const CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.red,
+                            child: Icon(
+                              Icons.inventory_2,
+                              color: Colors.white,
+                              size: 18,
+                            )),
+                      ),
+
+                      //invest
                       ListTile(
                         minTileHeight: 40,
                         onTap: () {
