@@ -7,6 +7,7 @@ import 'package:fcb_global/view/invest/invest_view.dart';
 import 'package:fcb_global/view/package/pacakage_view.dart';
 import 'package:fcb_global/view/settings/settings.dart';
 import 'package:fcb_global/view/team/team.dart';
+import 'package:fcb_global/view/team/team_view/team_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -291,51 +292,49 @@ class _HomeViewState extends State<HomeView> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${typeMapping[entry['type']] ?? 'Unknown Type'}",
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                          ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        typeMapping[entry['type']] ?? 'Unknown Type',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
                         ),
-                        const SizedBox(height: 5),
-                        Text(
-                          "${packageMapping[entry['package_id']] ?? 'Unknown Package'}",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        packageMapping[entry['package_id']] ?? 'Unknown Package',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
                         ),
-                        const SizedBox(height: 5),
-                        
-                      ],
-                    ),
-                    Text(
-                      "${entry['date']}",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
                       ),
+                      const SizedBox(height: 5),
+                      
+                    ],
+                  ),
+                  Text(
+                    "${entry['date']}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
                     ),
-                    const SizedBox(height: 5),
-                    Text(
-                      "${entry['amount']}\$",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "${entry['amount']}\$",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );
@@ -647,8 +646,8 @@ class _HomeViewState extends State<HomeView> {
             flex: 1,
             child: InkWell(
               onTap: () {
-                // Get.to(() => const TeamView(),
-                //     transition: Transition.rightToLeftWithFade);
+                Get.to(() => TreeView(),
+                    transition: Transition.rightToLeftWithFade);
               },
               child: const Column(
                 children: [

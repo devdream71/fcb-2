@@ -120,4 +120,33 @@ class TreeController extends GetxController {
       isLoading.value = false;
     }
   }
+
+
+  Future <void> featchTreeData2 (int userId) async {
+      isLoading.value = true;
+      try{
+        final Response = await http.post(
+          Uri.parse('https://fcbglobal.uk/api/v1/tree'),
+          headers: {
+            'Authorization': 'Bearer ${token.value}',
+          'Content-Type': 'application/json',
+          },
+          body: jsonEncode({'user_id': userId }),
+        );
+
+        if (Response.statusCode ==200)  {
+          final jsonData = jsonDecode(Response.body);
+          treeData.value = TreeResponse.fromJson(jsonData);
+          debugPrint('Tree data fetched successfully');
+
+        } else {
+             debugPrint('Error');
+        }  
+      } 
+      catch (e){
+        debugPrint('Exception cught: $e');
+      } finally {
+           isLoading.value = false;
+      }
+  }
 }
