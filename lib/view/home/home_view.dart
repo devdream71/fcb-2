@@ -2,6 +2,7 @@ import 'package:fcb_global/utils/app_assets.dart';
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/utils/app_space.dart';
 import 'package:fcb_global/view/about/controller/about_controller.dart';
+import 'package:fcb_global/view/income/income_controller/income_controller.dart';
 import 'package:fcb_global/view/invest/invest_view.dart';
 import 'package:fcb_global/view/package/pacakage_view.dart';
 import 'package:fcb_global/view/settings/settings.dart';
@@ -194,49 +195,153 @@ class _HomeViewState extends State<HomeView> {
   }
 
   // Show income list //recceive money =====>
+  // Widget buildShowIncome() {
+  //   return ListView.builder(
+  //     physics: const NeverScrollableScrollPhysics(),
+  //     shrinkWrap: true,
+  //     itemCount: 5,
+  //     itemBuilder: (BuildContext context, int index) {
+  //       return Padding(
+  //         padding: const EdgeInsets.all(5),
+  //         child: Container(
+  //           height: 70,
+  //           decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(5),
+  //             color: const Color(0xffF4F6FF),
+  //           ),
+  //           child: const Padding(
+  //             padding: EdgeInsets.only(right: 8, left: 8),
+  //             child: Row(
+  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //               children: [
+  //                 Column(
+  //                   crossAxisAlignment: CrossAxisAlignment.start,
+  //                   mainAxisAlignment: MainAxisAlignment.center,
+  //                   children: [
+  //                     Text(
+  //                       "ROI",
+  //                       style: TextStyle(
+  //                           fontSize: 18,
+  //                           color: Colors.blue,
+  //                           fontWeight: FontWeight.bold),
+  //                     ),
+  //                     AppSpace.spaceH4,
+  //                     Text("Package-3"),
+  //                   ],
+  //                 ),
+  //                 Text("12.10.2024"),
+  //                 Text("50"),
+  //               ],
+  //             ),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+   
+
   Widget buildShowIncome() {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 5,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.all(5),
-          child: Container(
-            height: 70,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: const Color(0xffF4F6FF),
+    final IncomeApiController incomeController = Get.put(IncomeApiController());
+    incomeController.fetchData();
+
+    final Map<int, String> typeMapping = {
+      0: "ROI",
+      1: "Referral Commission",
+      2: "Deposit Bonus",
+      3: "Matching",
+    };
+
+    final Map<int, String> packageMapping = {
+      11: "P11: 111",
+      10: "P10: 50000",
+      9: "P9: 30000",
+      8: "P8: 10000",
+      7: "P7: 5000",
+      6: "P6: 3000",
+      5: "P5: 1000",
+      4: "P4: 500",
+      3: "P3: 300",
+      2: "P2: 100",
+      1: "P1: 50",
+    };
+
+    return Obx(() {
+      if (incomeController.isLoading.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
+
+      final incomes = incomeController.apiResponse.value?.incomes ?? [];
+
+      if (incomes.isEmpty) {
+        return const Center(child: Text("No income data available."));
+      }
+
+      return ListView.builder(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(10),
+        itemCount: incomes.length > 10 ? 10 : incomes.length,  //incomes.length,
+        itemBuilder: (context, index) {
+          final entry = incomes[index];
+          return Card(
+            elevation: 4,
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
             ),
-            child: const Padding(
-              padding: EdgeInsets.only(right: 8, left: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "ROI",
-                        style: TextStyle(
-                            fontSize: 18,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${typeMapping[entry['type']] ?? 'Unknown Type'}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                             color: Colors.blue,
-                            fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          "${packageMapping[entry['package_id']] ?? 'Unknown Package'}",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        
+                      ],
+                    ),
+                    Text(
+                      "${entry['date']}",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
                       ),
-                      AppSpace.spaceH4,
-                      Text("Package-3"),
-                    ],
-                  ),
-                  Text("12.10.2024"),
-                  Text("50"),
-                ],
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      "${entry['amount']}\$",
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    });
   }
 
   // Balance widget
@@ -287,13 +392,13 @@ class _HomeViewState extends State<HomeView> {
                         //   ),
                         // )
                         Text(
-  '${double.tryParse(userController.myWallet.value.toString()) ?? 0.0}', // Convert to double or default to 0.0 if parsing fails
-  style: const TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: Colors.green,
-  ),
-)
+                          '${double.tryParse(userController.myWallet.value.toString()) ?? 0.0}', // Convert to double or default to 0.0 if parsing fails
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        )
                       ],
                     ),
                   );
@@ -316,11 +421,11 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
           ),
-          Align(alignment:  Alignment.centerRight,
-          child: Container(
-           padding: const EdgeInsets.all(2),
-
-          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              padding: const EdgeInsets.all(2),
+            ),
           ),
           const SizedBox(
             width: 2,
@@ -419,16 +524,56 @@ class _HomeViewState extends State<HomeView> {
   }
 
   //build rating
-  buildRating() {
+  // buildRating() {
+  //   return Column(
+  //     children: [
+  //       const CircleAvatar(
+  //         radius: 30,
+  //         backgroundImage: AssetImage(AppAssets.appLogo),
+  //       ),
+  //       const Text(
+  //         'Md. Mosiur Rahman Rangga',
+  //         style: TextStyle(fontSize: 20, color: Colors.white),
+  //       ),
+  //       RatingBar.builder(
+  //         initialRating: 2,
+  //         minRating: 1,
+  //         itemSize: 26,
+  //         direction: Axis.horizontal,
+  //         allowHalfRating: true,
+  //         itemCount: 5,
+  //         itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+  //         unratedColor: Colors.white,
+  //         itemBuilder: (context, _) => const Icon(
+  //           Icons.star,
+  //           color: Colors.amber,
+  //         ),
+  //         onRatingUpdate: (rating) {},
+  //       ),
+  //     ],
+  //   );
+  // }
+
+   buildRating() {
+    final UserController userController = Get.put(UserController());
+    userController.fetchUserInfo();
     return Column(
       children: [
         const CircleAvatar(
           radius: 30,
           backgroundImage: AssetImage(AppAssets.appLogo),
         ),
-        const Text(
-          'Md. Mosiur Rahman Rangga',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+        // const Text(
+        //   'Md. Mosiur Rahman Rangga',
+        //   style: TextStyle(fontSize: 20, color: Colors.white),
+        // ),
+        Text(
+          '${(userController.name.value)}', // Convert to double or default to 0.0 if parsing fails
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         RatingBar.builder(
           initialRating: 2,
@@ -502,8 +647,8 @@ class _HomeViewState extends State<HomeView> {
             flex: 1,
             child: InkWell(
               onTap: () {
-                Get.to(() => const TeamView(),
-                    transition: Transition.rightToLeftWithFade);
+                // Get.to(() => const TeamView(),
+                //     transition: Transition.rightToLeftWithFade);
               },
               child: const Column(
                 children: [

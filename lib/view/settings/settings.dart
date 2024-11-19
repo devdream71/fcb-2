@@ -13,6 +13,7 @@ import 'package:fcb_global/view/receive_money/receive_moneytwo.dart';
 import 'package:fcb_global/view/refer/refer_view/refer_view.dart';
 import 'package:fcb_global/view/send_money/send_money.dart';
 import 'package:fcb_global/view/team/team.dart';
+import 'package:fcb_global/view/team/team_view/team_view.dart';
 import 'package:fcb_global/view/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -262,7 +263,7 @@ class Setting extends StatelessWidget {
                       ListTile(
                         minTileHeight: 40,
                         onTap: () {
-                          Get.to(const TeamView(),
+                          Get.to(  TreeView(),
                               transition: Transition.rightToLeftWithFade);
                         },
                         title: const Text("Team",
