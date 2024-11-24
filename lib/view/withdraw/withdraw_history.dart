@@ -19,76 +19,77 @@ class WithdrawHistory extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
+                  children: [
                     const Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Withdraw History",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Withdraw History",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: const Icon(
+                          Icons.cancel,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                 Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-                   ],
-                ),
-                
                 const SizedBox(
                   height: 10,
                 ),
-               
                 const SizedBox(
                   height: 10,
                 ),
-                const ListTile(
-                  leading: CircleAvatar(
-                    child: Text('1'),
-                  ),
-                  title: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Amount: \$100",
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "	TRC20 Wallet: \$4564",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        "Charge: 3%",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        "Time: May 12, 2024 • 12:12 PM",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        "Status: Active",
-                        style: TextStyle(color: Colors.green),
-                      ),
 
+                const Text(
+                  'Withdraw History',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )
 
-                      
-                    ],
-                  ),
-                ),
+                // const ListTile(
+                //   leading: CircleAvatar(
+                //     child: Text('1'),
+                //   ),
+                //   title: Column(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Amount: \$100",
+                //           style: TextStyle(color: Colors.white)),
+                //     ],
+                //   ),
+                //   subtitle: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text(
+                //         "	TRC20 Wallet: \$4564",
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //       Text(
+                //         "Charge: 3%",
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //       Text(
+                //         "Time: May 12, 2024 • 12:12 PM",
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //       Text(
+                //         "Status: Active",
+                //         style: TextStyle(color: Colors.green),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

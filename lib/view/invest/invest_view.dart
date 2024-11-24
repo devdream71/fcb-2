@@ -43,7 +43,7 @@ class InvestView extends StatelessWidget {
                                 },
                                 icon: const Icon(
                                   Icons.cancel,
-                                  color: Colors.red,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),

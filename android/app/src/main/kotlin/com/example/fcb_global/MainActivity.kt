@@ -1,4 +1,4 @@
-package com.example.fcb_global
+package com.dreamtech.fcb_global
 
 import io.flutter.embedding.android.FlutterActivity
 

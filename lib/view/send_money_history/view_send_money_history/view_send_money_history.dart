@@ -53,7 +53,7 @@ class SendMoneyPage extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.cancel,
-                          color: Colors.red,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -87,6 +87,7 @@ class SendMoneyPage extends StatelessWidget {
 
                       return ListTile(
                         leading: CircleAvatar(
+                          radius: 15,
                           backgroundColor: Colors.white,
                           child: Text(
                             '${index + 1}', // Display the index (1-based) inside CircleAvatar

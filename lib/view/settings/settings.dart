@@ -49,7 +49,7 @@ class Setting extends StatelessWidget {
                         onPressed: () {},
                         icon: const Icon(
                           size: 28,
-                          Icons.settings,
+                          Icons.more_vert,
                           color: Colors.white,
                         )),
                     IconButton(
@@ -59,7 +59,7 @@ class Setting extends StatelessWidget {
                         icon: const Icon(
                           size: 28,
                           Icons.cancel,
-                          color: Colors.red,
+                          color: Colors.white,
                         ))
                   ],
                 ),

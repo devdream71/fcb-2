@@ -38,101 +38,112 @@ class DepositHistory extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.cancel,
-                          color: Colors.red,
+                          color: Colors.white,
                         ),
                       ),
                     ),
                   ],
                 ),
-             
-                ListTile(
-                  trailing: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        AppAssets.trump,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  title: const Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Sl: 1", style: TextStyle(color: Colors.white)),
-                      Text("Amount: \$100",
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                  subtitle: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Status: Active",
-                        style: TextStyle(color: Colors.green),
-                      ),
-                      Text(
-                        "Time: May 14, 2024, 12:12 AM",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        "Note: Due to the uncertainty in the forex market caused by the U.S.",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
+
+                const SizedBox(
+                  height: 30,
                 ),
+
+                const Text(
+                  'No Deposit History',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+
                 const SizedBox(
                   height: 10,
                 ),
-                ListTile(
-                  trailing: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        AppAssets.trump,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  title: const Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Sl: 2", style: TextStyle(color: Colors.white)),
-                      Text("Amount: \$500",
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                  subtitle: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Status: in Active",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      Text("Time: May 14, 2024, 12:12 AM",
-                          style: TextStyle(color: Colors.white)),
-                      Text(
-                          "Note: Due to the uncertainty in the forex market caused by the U.S.",
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                ),
+
+                // ListTile(
+                //   trailing: Container(
+                //     width: 50,
+                //     height: 50,
+                //     decoration: BoxDecoration(
+                //       shape: BoxShape.rectangle,
+                //       borderRadius: BorderRadius.circular(10),
+                //       color: Colors.grey,
+                //     ),
+                //     child: ClipRRect(
+                //       borderRadius: BorderRadius.circular(10),
+                //       child: Image.asset(
+                //         AppAssets.trump,
+                //         fit: BoxFit.cover,
+                //       ),
+                //     ),
+                //   ),
+                //   title: const Column(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Sl: 1", style: TextStyle(color: Colors.white)),
+                //       Text("Amount: \$100",
+                //           style: TextStyle(color: Colors.white)),
+                //     ],
+                //   ),
+                //   subtitle: const Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text(
+                //         "Status: Active",
+                //         style: TextStyle(color: Colors.green),
+                //       ),
+                //       Text(
+                //         "Time: May 14, 2024, 12:12 AM",
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //       Text(
+                //         "Note: Due to the uncertainty in the forex market caused by the U.S.",
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                
+                // ListTile(
+                //   trailing: Container(
+                //     width: 50,
+                //     height: 50,
+                //     decoration: BoxDecoration(
+                //       shape: BoxShape.rectangle,
+                //       borderRadius: BorderRadius.circular(10),
+                //       color: Colors.grey,
+                //     ),
+                //     child: ClipRRect(
+                //       borderRadius: BorderRadius.circular(10),
+                //       child: Image.asset(
+                //         AppAssets.trump,
+                //         fit: BoxFit.cover,
+                //       ),
+                //     ),
+                //   ),
+                //   title: const Column(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Sl: 2", style: TextStyle(color: Colors.white)),
+                //       Text("Amount: \$500",
+                //           style: TextStyle(color: Colors.white)),
+                //     ],
+                //   ),
+                //   subtitle: const Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text(
+                //         "Status: in Active",
+                //         style: TextStyle(color: Colors.red),
+                //       ),
+                //       Text("Time: May 14, 2024, 12:12 AM",
+                //           style: TextStyle(color: Colors.white)),
+                //       Text(
+                //           "Note: Due to the uncertainty in the forex market caused by the U.S.",
+                //           style: TextStyle(color: Colors.white)),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

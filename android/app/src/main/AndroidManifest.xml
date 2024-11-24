@@ -5,7 +5,7 @@
 
 
     <application
-        android:label="fcb_global"
+        android:label="FCB Global"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -216,7 +216,7 @@ class IncomeView extends StatelessWidget {
                             onPressed: () => Get.back(),
                             icon: const Icon(
                               Icons.cancel,
-                              color: Colors.red,
+                              color: Colors.white,
                             ),
                           ),
                         ],

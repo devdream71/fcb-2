@@ -1,5 +1,3 @@
-
-import 'package:fcb_global/view/home/home_view.dart';
 import 'package:fcb_global/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,7 +30,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const HomeView(),
-      home: LoginView(),
+      //home: LoginView(),
+      home: const SplashScreen()
     );
   }
 }

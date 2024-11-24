@@ -46,7 +46,7 @@ class LoginController extends GetxController {
           // Save the token if present
           await saveToken(token);
           debugPrint('Token: $token');
-          Get.to(() => const HomeView());
+          Get.offAll(() => const HomeView());
           Get.snackbar('Success', 'Login successful',
               backgroundColor: Colors.green, margin: const EdgeInsets.all(2));
         } else {

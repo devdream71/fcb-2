@@ -35,7 +35,7 @@ class About extends StatelessWidget {
                     onPressed: () => Get.back(),
                     icon: const Icon(
                       Icons.cancel,
-                      color: Colors.red,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -54,6 +54,7 @@ class About extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: const CircleAvatar(
+                          radius: 15,
                           backgroundColor: Colors.white,
                           child: Icon(Icons.person),
                         ),
@@ -66,12 +67,13 @@ class About extends StatelessWidget {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 16,
                           ),
                         ),
                       ),
                       ListTile(
                         leading: const CircleAvatar(
+                          radius: 15,
                           backgroundColor: Colors.white,
                           child: Icon(Icons.phone),
                         ),
@@ -84,12 +86,13 @@ class About extends StatelessWidget {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 16,
                           ),
                         ),
                       ),
                       ListTile(
                         leading: const CircleAvatar(
+                          radius: 15,
                           backgroundColor: Colors.white,
                           child: Icon(Icons.email),
                         ),
@@ -102,12 +105,13 @@ class About extends StatelessWidget {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 16,
                           ),
                         ),
                       ),
                       ListTile(
                         leading: const CircleAvatar(
+                          radius: 15,
                           backgroundColor: Colors.white,
                           child: Icon(Icons.person_outline),
                         ),
@@ -120,7 +124,7 @@ class About extends StatelessWidget {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 16,
                           ),
                         ),
                       ),
@@ -135,8 +139,3 @@ class About extends StatelessWidget {
     );
   }
 }
-
-
-
-
- 
