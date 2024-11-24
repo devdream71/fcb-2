@@ -8,12 +8,10 @@ import 'package:fcb_global/view/income/income_controller/income_controller.dart'
 import 'package:fcb_global/view/invest/invest_view.dart';
 import 'package:fcb_global/view/package/pacakage_view.dart';
 import 'package:fcb_global/view/settings/settings.dart';
-import 'package:fcb_global/view/team/team.dart';
 import 'package:fcb_global/view/team/team_view/team_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -403,64 +401,64 @@ class _HomeViewState extends State<HomeView> {
       1: "P1: 50",
     };
 
-    return 
-    // SizedBox(
-    //   height: 200,
-    //   child: Column(
-    //     children: [
-    //       Expanded(
-    //         child: PageView(
-    //           controller: _pageController,
-    //           onPageChanged: (index) {
-    //             setState(() {
-    //               _currentIndex = index;
-    //             });
-    //           },
-    //           children: [
-    //             buildSliderItem('Invest', 'assets/images/trump.jpg', () {
-    //               // Get.to(
-    //               //   const AcademicLogin(),
-    //               //   arguments: 'Academy',
-    //               //   transition: Transition.rightToLeftWithFade,
-    //               // );
-    //             }),
-    //             buildSliderItem('Income', 'assets/images/trump.jpg', () {
-    //               // Get.to(const TeacherLoginView(),
-    //               //  arguments: 'Teacher',
-    //               //     transition: Transition.rightToLeftWithFade);
-    //             }),
-    //             buildSliderItem('Send Money', 'assets/images/trump.jpg', () {
-    //               // Get.to(const Login(),
-    //               //  arguments: 'Student',
-    //               //     transition: Transition.rightToLeftWithFade);
-    //             }),
-    //             buildSliderItem('Withdraw', 'assets/images/trump.jpg', () {
-    //               // Get.to(const HomeTutorPage(),
-    //               //     transition: Transition.rightToLeftWithFade);
-    //             }),
-    //           ],
-    //         ),
-    //       ),
+    return
+        // SizedBox(
+        //   height: 200,
+        //   child: Column(
+        //     children: [
+        //       Expanded(
+        //         child: PageView(
+        //           controller: _pageController,
+        //           onPageChanged: (index) {
+        //             setState(() {
+        //               _currentIndex = index;
+        //             });
+        //           },
+        //           children: [
+        //             buildSliderItem('Invest', 'assets/images/trump.jpg', () {
+        //               // Get.to(
+        //               //   const AcademicLogin(),
+        //               //   arguments: 'Academy',
+        //               //   transition: Transition.rightToLeftWithFade,
+        //               // );
+        //             }),
+        //             buildSliderItem('Income', 'assets/images/trump.jpg', () {
+        //               // Get.to(const TeacherLoginView(),
+        //               //  arguments: 'Teacher',
+        //               //     transition: Transition.rightToLeftWithFade);
+        //             }),
+        //             buildSliderItem('Send Money', 'assets/images/trump.jpg', () {
+        //               // Get.to(const Login(),
+        //               //  arguments: 'Student',
+        //               //     transition: Transition.rightToLeftWithFade);
+        //             }),
+        //             buildSliderItem('Withdraw', 'assets/images/trump.jpg', () {
+        //               // Get.to(const HomeTutorPage(),
+        //               //     transition: Transition.rightToLeftWithFade);
+        //             }),
+        //           ],
+        //         ),
+        //       ),
 
-    //       // Dot Indicator for the slider
-    //       Padding(
-    //         padding: const EdgeInsets.symmetric(vertical: 16),
-    //         child: SmoothPageIndicator(
-    //           controller: _pageController,
-    //           count: 4, // Number of pages
-    //           effect: const ExpandingDotsEffect(
-    //             activeDotColor: Colors.blue,
-    //             dotColor: Colors.grey,
-    //             dotHeight: 10,
-    //             dotWidth: 10,
-    //             expansionFactor: 3,
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
-    SingleChildScrollView(
+        //       // Dot Indicator for the slider
+        //       Padding(
+        //         padding: const EdgeInsets.symmetric(vertical: 16),
+        //         child: SmoothPageIndicator(
+        //           controller: _pageController,
+        //           count: 4, // Number of pages
+        //           effect: const ExpandingDotsEffect(
+        //             activeDotColor: Colors.blue,
+        //             dotColor: Colors.grey,
+        //             dotHeight: 10,
+        //             dotWidth: 10,
+        //             expansionFactor: 3,
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // );
+        SingleChildScrollView(
       child: Obx(() {
         if (incomeController.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -472,6 +470,7 @@ class _HomeViewState extends State<HomeView> {
           return const Center(child: Text("No income data available."));
         }
         return Container(
+          color: Colors.green.withOpacity(0.4),
           height: 380,
           child: ListView.builder(
             shrinkWrap: true,
@@ -590,7 +589,7 @@ class _HomeViewState extends State<HomeView> {
                         //   ),
                         // )
                         Text(
-                          '${double.tryParse(userController.myWallet.value.toString()) ?? 0.0}',
+                          '\$ ${double.tryParse(userController.myWallet.value.toString()) ?? 0.0}',
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -604,7 +603,7 @@ class _HomeViewState extends State<HomeView> {
               }),
             ],
           ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.4),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.32),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
@@ -808,7 +807,7 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   Icon(
                     Icons.storefront,
-                    size: 50,
+                    size: 30,
                     color: Colors.white,
                   ),
                   Text(
@@ -829,7 +828,7 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   Icon(
                     Icons.paid,
-                    size: 50,
+                    size: 30,
                     color: Colors.white,
                   ),
                   Text(
@@ -852,7 +851,7 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   Icon(
                     Icons.diversity_3,
-                    size: 50,
+                    size: 30,
                     color: Colors.white,
                   ),
                   Text(

@@ -2,7 +2,7 @@ import 'package:fcb_global/view/receive_money/controller/receive_money_controlle
 import 'package:fcb_global/view/send_money_history/controller_send_money_history/controller_send_money_history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';  
+import 'package:intl/intl.dart';
 import 'package:fcb_global/utils/app_colors.dart';
 
 class SendMoneyPage extends StatelessWidget {
@@ -87,7 +87,7 @@ class SendMoneyPage extends StatelessWidget {
 
                       return ListTile(
                         leading: CircleAvatar(
-                          radius: 15,
+                          radius: 13,
                           backgroundColor: Colors.white,
                           child: Text(
                             '${index + 1}', // Display the index (1-based) inside CircleAvatar

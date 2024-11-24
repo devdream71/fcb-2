@@ -80,7 +80,7 @@ class LoginView extends StatelessWidget {
                         style: const TextStyle(
                             color: Colors.black), // Set text color to black
                         decoration: InputDecoration(
-                          hintText: "demo@gmail.com",
+                          hintText: "",
                           hintStyle: const TextStyle(
                               color: Colors
                                   .black54), // Set hint text color to black with lower opacity
@@ -135,7 +135,7 @@ class LoginView extends StatelessWidget {
                           style: const TextStyle(
                               color: Colors.black), // Set text color to black
                           decoration: InputDecoration(
-                            hintText: "password",
+                            hintText: " ",
                             hintStyle: const TextStyle(
                                 color: Colors
                                     .black54), // Set hint text color to black with lower opacity

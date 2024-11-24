@@ -71,6 +71,7 @@ class PackageView extends StatelessWidget {
                             color: Colors.white,
                             strokeWidth: 1,
                             child: Container(
+                              width: double.infinity,
                               margin: const EdgeInsets.all(8),
                               padding: const EdgeInsets.symmetric(vertical: 5),
                               child: Column(
@@ -95,35 +96,35 @@ class PackageView extends StatelessWidget {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  const Text(
-                                    'Package Type: Membership/Investment',
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                  ),
-                                  const Text(
-                                    "Deposit Bonus: 0 ",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const Text(
-                                    "Daily ROI: 70\$ + ",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      "Max ROI Generate: 200 Days ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
+                                  // const Text(
+                                  //   'Package Type: Membership/Investment',
+                                  //   style: TextStyle(
+                                  //       fontSize: 16, color: Colors.white),
+                                  // ),
+                                  // const Text(
+                                  //   "Deposit Bonus: 0 ",
+                                  //   style: TextStyle(
+                                  //     fontSize: 16,
+                                  //     color: Colors.white,
+                                  //   ),
+                                  // ),
+                                  // const Text(
+                                  //   "Daily ROI: 70\$ + ",
+                                  //   style: TextStyle(
+                                  //     fontSize: 16,
+                                  //     color: Colors.white,
+                                  //   ),
+                                  // ),
+                                  // const Align(
+                                  //   alignment: Alignment.topLeft,
+                                  //   child: Text(
+                                  //     "Max ROI Generate: 200 Days ",
+                                  //     style: TextStyle(
+                                  //       fontSize: 16,
+                                  //       color: Colors.white,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
