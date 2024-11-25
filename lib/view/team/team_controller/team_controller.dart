@@ -50,6 +50,7 @@ class TreeController extends GetxController {
         final jsonData = jsonDecode(response.body);
         treeData.value = TreeResponse.fromJson(jsonData);
         debugPrint('Tree data fetched successfully');
+        debugPrint(response.body);
       } else {
         debugPrint(
             'Error: Failed to fetch tree data. Status code: ${response.statusCode}');

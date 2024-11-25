@@ -70,8 +70,6 @@ class Setting extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      
-
                       customListTile(
                         title: 'Home',
                         icon: Icons.home,
@@ -87,7 +85,7 @@ class Setting extends StatelessWidget {
                         icon: Icons.wallet,
                         iconBackgroundColor: Colors.red,
                         onTap: () {
-                          Get.to(  MyWallet(),
+                          Get.to(MyWallet(),
                               transition: Transition.rightToLeftWithFade);
                         },
                       ),
@@ -97,7 +95,7 @@ class Setting extends StatelessWidget {
                         icon: Icons.info,
                         iconBackgroundColor: Colors.red,
                         onTap: () {
-                          Get.to(  About(),
+                          Get.to(About(),
                               transition: Transition.rightToLeftWithFade);
                         },
                       ),
@@ -147,7 +145,7 @@ class Setting extends StatelessWidget {
                         icon: Icons.monetization_on,
                         iconBackgroundColor: Colors.red,
                         onTap: () {
-                          Get.to(  MyReferPage(),
+                          Get.to(MyReferPage(),
                               transition: Transition.rightToLeftWithFade);
                         },
                       ),
@@ -167,7 +165,7 @@ class Setting extends StatelessWidget {
                         icon: Icons.people,
                         iconBackgroundColor: Colors.red,
                         onTap: () {
-                          Get.to( TreeView(),
+                          Get.to(TreeView(),
                               transition: Transition.rightToLeftWithFade);
                         },
                       ),
@@ -177,7 +175,7 @@ class Setting extends StatelessWidget {
                         icon: Icons.send,
                         iconBackgroundColor: Colors.red,
                         onTap: () {
-                          Get.to(const Withdraw(),
+                          Get.to(Withdraw(),
                               transition: Transition.rightToLeftWithFade);
                         },
                       ),
@@ -197,7 +195,7 @@ class Setting extends StatelessWidget {
                         icon: Icons.send,
                         iconBackgroundColor: Colors.red,
                         onTap: () {
-                          Get.to( SendMoney(),
+                          Get.to(SendMoney(),
                               transition: Transition.rightToLeftWithFade);
                         },
                       ),

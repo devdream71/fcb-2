@@ -36,7 +36,7 @@ class UserController extends GetxController {
   }
 
   Future<void> fetchUserInfo() async {
-    await loadToken();  // Ensure token is loaded before making the request
+    await loadToken();   
 
     if (token.value.isEmpty) {
       errorMessage.value = 'No token found. Please log in.';
@@ -50,7 +50,7 @@ class UserController extends GetxController {
       final response = await http.post(
         Uri.parse('https://fcbglobal.uk/api/v1/inject'),
         headers: {
-          'Authorization': 'Bearer ${token.value}',  // Use dynamic token
+          'Authorization': 'Bearer ${token.value}',   
           'Content-Type': 'application/json',
         },
       );

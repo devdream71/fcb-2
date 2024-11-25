@@ -1,4 +1,5 @@
 import 'package:fcb_global/utils/app_colors.dart';
+import 'package:fcb_global/view/about/controller/about_controller.dart';
 import 'package:fcb_global/view/withdraw/withdraw_history.dart';
 import 'package:fcb_global/widget/custome_textfield.dart';
 import 'package:fcb_global/widget/label_with_asterrisk.dart';
@@ -7,10 +8,13 @@ import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
 
 class Withdraw extends StatelessWidget {
-  const Withdraw({super.key});
+  Withdraw({super.key});
+
+  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
+    userController.fetchUserInfo();
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColors.appcolor,
@@ -21,7 +25,7 @@ class Withdraw extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 const Align(
+                const Align(
                   alignment: Alignment.center,
                   child: Text(
                     "Withdraw",
@@ -31,27 +35,27 @@ class Withdraw extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                 Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.cancel,
-                  color: Colors.white,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: const Icon(
+                      Icons.cancel,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
-            ),
               ],
             ),
-            
             const SizedBox(
               height: 10,
             ),
             InkWell(
               onTap: () {
-                Get.to(() => const WithdrawHistory());
+                Get.to(() => const WithdrawHistory(),
+                    transition: Transition.leftToRightWithFade);
               },
               child: Container(
                 height: 45,
@@ -75,7 +79,7 @@ class Withdraw extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-              const Dash(
+            const Dash(
                 direction: Axis.horizontal,
                 length: 230,
                 dashLength: 12,
@@ -83,35 +87,46 @@ class Withdraw extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            Card(
-              elevation: 4.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Available Balance',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Obx(() {
+              if (userController.isLoading.value) {
+                return const CircularProgressIndicator();
+              } else if (userController.errorMessage.isNotEmpty) {
+                return Text(
+                  userController.errorMessage.value,
+                  style: const TextStyle(color: Colors.red),
+                );
+              } else {
+                return Card(
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Available Balance',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          '${userController.myWallet.value}',
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        )
+                      ],
                     ),
-                    SizedBox(width: 5),
-                    Text(
-                      '\$55',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                  ),
+                );
+              }
+            }),
             const SizedBox(
               height: 20,
             ),
