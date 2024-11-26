@@ -997,8 +997,14 @@ class _TreeViewState extends State<TreeView> {
   final TreeController controller = Get.put(TreeController());
 
   bool isLeftActive = true;
+
+  bool isRightActive = true;
+
   var selectedData;
   var rightSelectedData;
+
+  var leftSelectedDateG2;
+  var rightSelecteddateG2;
 
   @override
   Widget build(BuildContext context) {
@@ -1133,15 +1139,29 @@ class _TreeViewState extends State<TreeView> {
                                         fontSize: 16, color: Colors.black),
                                   ),
                                   const SizedBox(height: 20),
-                                  Center(
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pop(
-                                            context); // Close the modal sheet
-                                      },
-                                      child: const Text('Close'),
-                                    ),
-                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ElevatedButton.icon(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(
+                                          Icons.close,
+                                          color: Colors.red,
+                                        ),
+                                        label: const Text('Close'),
+                                      ),
+                                      ElevatedButton.icon(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.arrow_downward,
+                                            color: Colors.blue,
+                                          ),
+                                          label: const Text('Step Down'))
+                                    ],
+                                  )
                                 ],
                               ),
                             );
@@ -1198,10 +1218,11 @@ class _TreeViewState extends State<TreeView> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.blue,
+                      //color: Colors.blue.withOpacity(0.9),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 2, horizontal: 5),
                       child: Column(
                         children: [
                           const SizedBox(height: 10),
@@ -1210,17 +1231,6 @@ class _TreeViewState extends State<TreeView> {
                             children: [
                               //Left Data // gen 1
                               InkWell(
-                                onDoubleTap: () {
-                                  setState(() {
-                                    isLeftActive = true;
-
-                                    selectedData =
-                                        data.downlinkLeft?.downlinkLeft2nd;
-                                    var id = data.downlinkLeft!.user.id;
-                                    print(id);
-                                    controller.fetchTreeData(id!.toInt());
-                                  });
-                                },
                                 onTap: () {
                                   // Show left modal bottom sheet
                                   showModalBottomSheet(
@@ -1244,6 +1254,19 @@ class _TreeViewState extends State<TreeView> {
                                         rMember: data.downlinkLeft!.rMember,
                                         rCarryPoint:
                                             data.downlinkLeft!.rCarryPoint,
+                                        onPressed: () {
+                                          setState(() {
+                                            isLeftActive = true;
+
+                                            selectedData = data
+                                                .downlinkLeft?.downlinkLeft2nd;
+                                            var id = data.downlinkLeft!.user.id;
+                                            print(id);
+                                            controller
+                                                .fetchTreeData(id!.toInt());
+                                            Navigator.pop(context);
+                                          });
+                                        },
                                       );
                                     },
                                   );
@@ -1277,13 +1300,6 @@ class _TreeViewState extends State<TreeView> {
                                                 ),
                                               ),
                                               const SizedBox(height: 10),
-                                              if (isLeftActive)
-                                                const Icon(
-                                                  Icons
-                                                      .keyboard_double_arrow_down,
-                                                  color: Colors.black,
-                                                  size: 35,
-                                                ),
                                             ],
                                           )
                                         : InkWell(
@@ -1326,16 +1342,6 @@ class _TreeViewState extends State<TreeView> {
 
                               // Right Data //gen 1
                               InkWell(
-                                onDoubleTap: () {
-                                  setState(() {
-                                    isLeftActive = false;
-                                    rightSelectedData =
-                                        data.downlinkRight?.downlinkRight2nd;
-                                    var id = data.downlinkRight!.user.id;
-                                    print(id);
-                                    controller.fetchTreeData(id!.toInt());
-                                  });
-                                },
                                 onTap: () {
                                   // Show left modal bottom sheet
                                   showModalBottomSheet(
@@ -1347,20 +1353,33 @@ class _TreeViewState extends State<TreeView> {
                                     ),
                                     builder: (BuildContext context) {
                                       return _buildBottomSheetContent(
-                                        name: data.downlinkRight!.user.name,
-                                        phone: data.downlinkRight!.user.phone,
-                                        email: data.downlinkRight!.user.email,
-                                        joiningDate:
-                                            data.downlinkRight!.joiningDate,
-                                        placement:
-                                            data.downlinkRight!.placement,
-                                        lMember: data.downlinkRight!.lMember,
-                                        lCarryPoint:
-                                            data.downlinkRight!.lCarryPoint,
-                                        rMember: data.downlinkRight!.rMember,
-                                        rCarryPoint:
-                                            data.downlinkRight!.rCarryPoint,
-                                      );
+                                          name: data.downlinkRight!.user.name,
+                                          phone: data.downlinkRight!.user.phone,
+                                          email: data.downlinkRight!.user.email,
+                                          joiningDate:
+                                              data.downlinkRight!.joiningDate,
+                                          placement:
+                                              data.downlinkRight!.placement,
+                                          lMember: data.downlinkRight!.lMember,
+                                          lCarryPoint:
+                                              data.downlinkRight!.lCarryPoint,
+                                          rMember: data.downlinkRight!.rMember,
+                                          rCarryPoint:
+                                              data.downlinkRight!.rCarryPoint,
+                                          onPressed: () {
+                                            setState(() {
+                                              isLeftActive = false;
+                                              rightSelectedData = data
+                                                  .downlinkRight
+                                                  ?.downlinkRight2nd;
+                                              var id =
+                                                  data.downlinkRight!.user.id;
+                                              print(id);
+                                              controller
+                                                  .fetchTreeData(id!.toInt());
+                                              Navigator.pop(context);
+                                            });
+                                          });
                                     },
                                   );
                                 },
@@ -1393,13 +1412,6 @@ class _TreeViewState extends State<TreeView> {
                                                 ),
                                               ),
                                               const SizedBox(height: 10),
-                                              if (!isLeftActive)
-                                                const Icon(
-                                                  Icons
-                                                      .keyboard_double_arrow_down,
-                                                  color: Colors.black,
-                                                  size: 35,
-                                                ),
                                             ],
                                           )
                                         : InkWell(
@@ -1446,679 +1458,729 @@ class _TreeViewState extends State<TreeView> {
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 5),
 
-                  // 2nd Generation
-                  // Container(
-                  //   width: double.infinity,
-                  //   decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(8),
-                  //     color: Colors.blueGrey,
-                  //   ),
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.all(15.0),
-                  //     child: data.downlinkLeft != null ||
-                  //             data.downlinkRight != null
-                  //         ? Row(
-                  //             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //             crossAxisAlignment: CrossAxisAlignment.center,
-                  //             children: [
-                  //               // Left Column in Gen 2
-                  //               SingleChildScrollView(
-                  //                 scrollDirection: Axis.horizontal,
-                  //                 child:
-                  // InkWell(
-                  //                     onTap: () {
-                  //                       showModalBottomSheet(
-                  //                         context: context,
-                  //                         backgroundColor: Colors.white,
-                  //                         shape: const RoundedRectangleBorder(
-                  //                           borderRadius: BorderRadius.vertical(
-                  //                               top: Radius.circular(20)),
-                  //                         ),
-                  //                         builder: (BuildContext context) {
-                  //                           return Padding(
-                  //                             padding:
-                  //                                 const EdgeInsets.all(16.0),
-                  //                             child: Column(
-                  //                               mainAxisSize: MainAxisSize.min,
-                  //                               crossAxisAlignment:
-                  //                                   CrossAxisAlignment.start,
-                  //                               children: [
-                  //                                 const Center(
-                  //                                   child: Text(
-                  //                                     'Details',
-                  //                                     style: TextStyle(
-                  //                                       fontSize: 18,
-                  //                                       fontWeight:
-                  //                                           FontWeight.bold,
-                  //                                       color: Colors.black,
-                  //                                     ),
-                  //                                   ),
-                  //                                 ),
-                  //                                 const Divider(
-                  //                                     color: Colors.black),
-                  //                                 const SizedBox(height: 10),
-                  //                                 const Center(
-                  //                                   child: CircleAvatar(
-                  //                                     radius: 30,
-                  //                                     backgroundImage:
-                  //                                         AssetImage(
-                  //                                             AppAssets.people),
-                  //                                   ),
-                  //                                 ),
-                  //                                 const SizedBox(
-                  //                                   height: 10,
-                  //                                 ),
-                  //                                 Text(
-                  //                                   'Name: ${data.downlinkLeft!.downlinkLeft2nd!.user.name}',
-                  //                                   style: const TextStyle(
-                  //                                       fontSize: 16,
-                  //                                       color: Colors.black),
-                  //                                 ),
-
-                  //                                 const SizedBox(height: 20),
-                  //                                 Center(
-                  //                                   child: ElevatedButton(
-                  //                                     onPressed: () {
-                  //                                       Navigator.pop(
-                  //                                           context); // Close the modal sheet
-                  //                                     },
-                  //                                     child:
-                  //                                         const Text('Close'),
-                  //                                   ),
-                  //                                 ),
-                  //                               ],
-                  //                             ),
-                  //                           );
-                  //                         },
-                  //                       );
-                  //                     },
-                  //                     child: Column(children: [
-                  //                       data.downlinkLeft?.downlinkLeft2nd?.user
-                  //                                   ?.name !=
-                  //                               null
-                  //                           ? Column(
-                  //                               children: [
-                  //                                 const CircleAvatar(
-                  //                                   radius: 30,
-                  //                                   backgroundImage: AssetImage(
-                  //                                       AppAssets.people),
-                  //                                 ),
-                  //                                 Text(
-                  //                                   isLeftActive == true
-                  //                                       ? data
-                  //                                           .downlinkLeft!
-                  //                                           .downlinkLeft2nd!
-                  //                                           .user!
-                  //                                           .name
-                  //                                       : data.downlinkRight!
-                  //                                                   .downlinkLeft2nd ==
-                  //                                               null
-                  //                                           ? ""
-                  //                                           : data
-                  //                                               .downlinkRight!
-                  //                                               .downlinkLeft2nd!
-                  //                                               .user!
-                  //                                               .name,
-                  //                                   style: const TextStyle(
-                  //                                     fontSize: 14,
-                  //                                     color: Colors.white,
-                  //                                     fontWeight:
-                  //                                         FontWeight.bold,
-                  //                                   ),
-                  //                                 ),
-                  //                                 Text(
-                  //                                   data
-                  //                                           .downlinkLeft!
-                  //                                           .downlinkLeft2nd!
-                  //                                           .user!
-                  //                                           .phone ??
-                  //                                       "Left User",
-                  //                                   style: const TextStyle(
-                  //                                     fontSize: 14,
-                  //                                     color: Colors.white,
-                  //                                     fontWeight:
-                  //                                         FontWeight.bold,
-                  //                                   ),
-                  //                                 ),
-                  //                                 const SizedBox(height: 10),
-                  //                               ],
-                  //                             )
-                  //                           : InkWell(
-                  //                               onTap: () {
-                  //                                 showModalBottomSheet(
-                  //                                   context: context,
-                  //                                   isScrollControlled: true,
-                  //                                   builder: (context) =>
-                  //                                       Padding(
-                  //                                     padding: EdgeInsets.only(
-                  //                                         bottom: MediaQuery.of(
-                  //                                                 context)
-                  //                                             .viewInsets
-                  //                                             .bottom),
-                  //                                     child: const JoinForm(),
-                  //                                   ),
-                  //                                 );
-                  //                               },
-                  //                               child: Column(
-                  //                                 children: [
-                  //                                   SizedBox(
-                  //                                     height: 40,
-                  //                                     width: 40,
-                  //                                     child: Image.asset(
-                  //                                       AppAssets.addIcon,
-                  //                                       color: Colors.white,
-                  //                                     ),
-                  //                                   ),
-                  //                                   const SizedBox(height: 5),
-                  //                                   const Text(
-                  //                                     'Open',
-                  //                                     style: TextStyle(
-                  //                                         color: Colors.white),
-                  //                                   ),
-                  //                                 ],
-                  //                               ),
-                  //                             )
-                  //                     ])),
-                  //               ),
-
-                  //               // ====> Right Column in Gen 2
-
-                  //               data.downlinkLeft?.downlinkRight2nd != null ||
-                  //                       data.downlinkRight!.downlinkRight2nd !=
-                  //                           null
-                  //                   ? InkWell(
-                  //                       onTap: () {
-                  //                         showModalBottomSheet(
-                  //                           context: context,
-                  //                           backgroundColor: Colors.white,
-                  //                           shape: const RoundedRectangleBorder(
-                  //                             borderRadius:
-                  //                                 BorderRadius.vertical(
-                  //                                     top: Radius.circular(20)),
-                  //                           ),
-                  //                           builder: (BuildContext context) {
-                  //                             return Padding(
-                  //                               padding:
-                  //                                   const EdgeInsets.all(16.0),
-                  //                               child: Column(
-                  //                                 mainAxisSize:
-                  //                                     MainAxisSize.min,
-                  //                                 crossAxisAlignment:
-                  //                                     CrossAxisAlignment.start,
-                  //                                 children: [
-                  //                                   const Center(
-                  //                                     child: Text(
-                  //                                       'Details',
-                  //                                       style: TextStyle(
-                  //                                         fontSize: 18,
-                  //                                         fontWeight:
-                  //                                             FontWeight.bold,
-                  //                                         color: Colors.black,
-                  //                                       ),
-                  //                                     ),
-                  //                                   ),
-                  //                                   const Divider(
-                  //                                       color: Colors.black),
-                  //                                   const SizedBox(height: 10),
-                  //                                   const Center(
-                  //                                     child: CircleAvatar(
-                  //                                       radius: 30,
-                  //                                       backgroundImage:
-                  //                                           AssetImage(AppAssets
-                  //                                               .people),
-                  //                                     ),
-                  //                                   ),
-                  //                                   const SizedBox(
-                  //                                     height: 10,
-                  //                                   ),
-                  //                                   Text(
-                  //                                     'Name: ${data.downlinkLeft!.downlinkRight2nd!.user.name}',
-                  //                                     style: const TextStyle(
-                  //                                         fontSize: 16,
-                  //                                         color: Colors.black),
-                  //                                   ),
-
-                  //                                   const SizedBox(height: 20),
-                  //                                   Center(
-                  //                                     child: ElevatedButton(
-                  //                                       onPressed: () {
-                  //                                         Navigator.pop(
-                  //                                             context); // Close the modal sheet
-                  //                                       },
-                  //                                       child:
-                  //                                           const Text('Close'),
-                  //                                     ),
-                  //                                   ),
-                  //                                 ],
-                  //                               ),
-                  //                             );
-                  //                           },
-                  //                         );
-                  //                       },
-                  //                       child: Column(
-                  //                         crossAxisAlignment:
-                  //                             CrossAxisAlignment.center,
-                  //                         mainAxisAlignment:
-                  //                             MainAxisAlignment.center,
-                  //                         children: [
-                  //                           const CircleAvatar(
-                  //                             radius: 30,
-                  //                             backgroundImage:
-                  //                                 AssetImage(AppAssets.people),
-                  //                           ),
-                  //                           const SizedBox(height: 5),
-                  //                           Text(
-                  //                             isLeftActive == false
-                  //                                 ? data.downlinkRight!
-                  //                                             .downlinkRight2nd ==
-                  //                                         null
-                  //                                     ? ""
-                  //                                     : data
-                  //                                         .downlinkRight!
-                  //                                         .downlinkRight2nd!
-                  //                                         .user
-                  //                                         .name
-                  //                                 : data
-                  //                                     .downlinkLeft!
-                  //                                     .downlinkRight2nd!
-                  //                                     .user
-                  //                                     .name,
-                  //                             style: const TextStyle(
-                  //                               fontSize: 14,
-                  //                               color: Colors.white,
-                  //                             ),
-                  //                           ),
-                  //                           const SizedBox(height: 5),
-                  //                           Text(
-                  //                             data.downlinkLeft!
-                  //                                 .downlinkRight2nd!.user.phone,
-                  //                             style: const TextStyle(
-                  //                               fontSize: 14,
-                  //                               color: Colors.white,
-                  //                             ),
-                  //                           ),
-                  //                         ],
-                  //                       ),
-                  //                     )
-                  //                   : InkWell(
-                  //                       onDoubleTap: () {
-                  //                         print(data.downlinkLeft!
-                  //                             .downlinkRight2nd!.user.phone);
-                  //                       },
-                  //                       onTap: () {
-                  //                         print(
-                  //                             "Add button clicked for Downlink Right 2nd Level");
-                  //                       },
-                  //                       child: InkWell(
-                  //                         onTap: () {
-                  //                           showModalBottomSheet(
-                  //                             context: context,
-                  //                             isScrollControlled: true,
-                  //                             builder: (context) => Padding(
-                  //                               padding: EdgeInsets.only(
-                  //                                   bottom:
-                  //                                       MediaQuery.of(context)
-                  //                                           .viewInsets
-                  //                                           .bottom),
-                  //                               child: const JoinForm(),
-                  //                             ),
-                  //                           );
-                  //                         },
-                  //                         child: Column(
-                  //                           children: [
-                  //                             SizedBox(
-                  //                               height: 40,
-                  //                               width: 40,
-                  //                               child: Image.asset(
-                  //                                 AppAssets.addIcon,
-                  //                                 color: Colors.white,
-                  //                               ),
-                  //                             ),
-                  //                             const SizedBox(height: 5),
-                  //                             const Text(
-                  //                               'Open',
-                  //                               style: TextStyle(
-                  //                                   color: Colors.white),
-                  //                             ),
-                  //                           ],
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //             ],
-                  //           )
-                  //         : const SizedBox(),
-                  //   ),
-                  // ),
-
-                  ///gen 2 //left //right
+                  ///2nd gen 2  ===> container
                   Container(
-                    height: 180,
+                    //height: 180,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.blueGrey,
+                      //color: Colors.blueGrey,
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 5),
                       child: data.downlinkLeft != null ||
                               data.downlinkRight != null
-                          ? PageView(
-                              children: [
-                                // Left Slide
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.teal,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      data.downlinkLeft?.downlinkLeft2nd?.user
-                                                  ?.name !=
-                                              null
-                                          ? InkWell(
-                                              onTap: () {
-                                                showModalBottomSheet(
-                                                  context: context,
-                                                  backgroundColor: Colors.white,
-                                                  shape:
-                                                      const RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.vertical(
-                                                            top:
-                                                                Radius.circular(
-                                                                    20)),
-                                                  ),
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return _buildBottomSheetContent(
-                                                      name: data.downlinkRight!
-                                                          .user.name,
-                                                      phone: data.downlinkRight!
-                                                          .user.phone,
-                                                      email: data.downlinkRight!
-                                                          .user.email,
-                                                      joiningDate: data
-                                                          .downlinkRight!
-                                                          .joiningDate,
-                                                      placement: data
-                                                          .downlinkRight!
-                                                          .placement,
-                                                      lMember: data
-                                                          .downlinkRight!
-                                                          .lMember,
-                                                      lCarryPoint: data
-                                                          .downlinkRight!
-                                                          .lCarryPoint,
-                                                      rMember: data
-                                                          .downlinkRight!
-                                                          .rMember,
-                                                      rCarryPoint: data
-                                                          .downlinkRight!
-                                                          .rCarryPoint,
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  Column(
-                                                    children: [
-                                                      const CircleAvatar(
-                                                        radius: 30,
-                                                        backgroundImage:
-                                                            AssetImage(AppAssets
-                                                                .people),
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  //color: Colors.teal,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  data.downlinkLeft?.downlinkLeft2nd?.user
+                                              ?.name !=
+                                          null
+                                      ? SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              //gen 2 //downlinkLeft!.downlinkLeft2nd!
+
+                                              InkWell(
+                                                onTap: () {
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                                top: Radius
+                                                                    .circular(
+                                                                        20)),
                                                       ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Text(
-                                                        data
-                                                            .downlinkLeft!
-                                                            .downlinkLeft2nd!
-                                                            .user!
-                                                            .name,
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        data
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return _buildBottomSheetContent(
+                                                            name: data
                                                                 .downlinkLeft!
                                                                 .downlinkLeft2nd!
                                                                 .user!
-                                                                .phone ??
-                                                            "Left User",
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      const CircleAvatar(
-                                                        radius: 30,
-                                                        backgroundImage:
-                                                            AssetImage(AppAssets
-                                                                .people),
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 10),
-                                                      Text(
-                                                        data
-                                                            .downlinkLeft!
-                                                            .downlinkRight2nd!
-                                                            .user!
-                                                            .name,
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        data
-                                                            .downlinkLeft!
-                                                            .downlinkRight2nd!
-                                                            .user!
-                                                            .phone,
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          : InkWell(
-                                              onTap: () {
-                                                showModalBottomSheet(
-                                                  context: context,
-                                                  isScrollControlled: true,
-                                                  builder: (context) => Padding(
-                                                    padding: EdgeInsets.only(
-                                                      bottom:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets
-                                                              .bottom,
-                                                    ),
-                                                    child: const JoinForm(),
-                                                  ),
-                                                );
-                                              },
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: 40,
-                                                    width: 40,
-                                                    child: Image.asset(
-                                                      AppAssets.addIcon,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(height: 5),
-                                                  const Text(
-                                                    'Open',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                    ],
-                                  ),
-                                ),
+                                                                .name,
+                                                            phone: data
+                                                                .downlinkLeft!
+                                                                .downlinkLeft2nd!
+                                                                .user
+                                                                .phone,
+                                                            email: data
+                                                                .downlinkLeft!
+                                                                .downlinkLeft2nd!
+                                                                .user
+                                                                .email,
+                                                            joiningDate: data
+                                                                .downlinkLeft!
+                                                                .downlinkLeft2nd!
+                                                                .joiningDate,
+                                                            placement: data
+                                                                .downlinkLeft!
+                                                                .placement,
+                                                            lMember: data
+                                                                .downlinkLeft!
+                                                                .lMember,
+                                                            lCarryPoint: data
+                                                                .downlinkLeft!
+                                                                .lCarryPoint,
+                                                            rMember: data
+                                                                .downlinkLeft!
+                                                                .rMember,
+                                                            rCarryPoint: data
+                                                                .downlinkLeft!
+                                                                .rCarryPoint,
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                isLeftActive =
+                                                                    true;
 
-                                // Right Slide
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.cyan),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      data.downlinkRight?.downlinkRight2nd?.user
-                                                  ?.name !=
-                                              null
-                                          ? Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    const CircleAvatar(
-                                                      radius: 30,
-                                                      backgroundImage:
-                                                          AssetImage(
-                                                              AppAssets.people),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Text(
-                                                      data
-                                                          .downlinkRight!
-                                                          .downlinkLeft2nd!
-                                                          .user!
-                                                          .name,
-                                                      style: const TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                                                selectedData = data
+                                                                    .downlinkLeft
+                                                                    ?.downlinkLeft2nd;
+                                                                var id = data
+                                                                    .downlinkLeft!
+                                                                    .downlinkLeft2nd!
+                                                                    .user
+                                                                    .id;
+                                                                print(id);
+                                                                controller
+                                                                    .fetchTreeData(
+                                                                        id!.toInt());
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            });
+                                                      });
+                                                },
+                                                child: data
+                                                            .downlinkLeft
+                                                            ?.downlinkLeft2nd
+                                                            ?.user
+                                                            ?.name !=
+                                                        null
+                                                    ?
+
+                                                    //data.downlinkLeft?.downlinkLeft2nd?.name != null ?
+
+                                                    Column(
+                                                        children: [
+                                                          const CircleAvatar(
+                                                            radius: 25,
+                                                            backgroundImage:
+                                                                AssetImage(
+                                                                    AppAssets
+                                                                        .people),
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Text(
+                                                            data
+                                                                .downlinkLeft!
+                                                                .downlinkLeft2nd!
+                                                                .user!
+                                                                .name,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          showModalBottomSheet(
+                                                            context: context,
+                                                            isScrollControlled:
+                                                                true,
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  bottom: MediaQuery.of(
+                                                                          context)
+                                                                      .viewInsets
+                                                                      .bottom),
+                                                              child:
+                                                                  const JoinForm(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 40,
+                                                              width: 40,
+                                                              child:
+                                                                  Image.asset(
+                                                                AppAssets
+                                                                    .addIcon,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 5),
+                                                            const Text(
+                                                              'Open',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      data
-                                                          .downlinkRight!
-                                                          .downlinkLeft2nd!
-                                                          .user!
-                                                          .phone,
-                                                      style: const TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    const CircleAvatar(
-                                                      radius: 30,
-                                                      backgroundImage:
-                                                          AssetImage(
-                                                              AppAssets.people),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Text(
-                                                      data
-                                                          .downlinkRight!
-                                                          .downlinkRight2nd!
-                                                          .user!
-                                                          .name,
-                                                      style: const TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      data
-                                                          .downlinkRight!
-                                                          .downlinkRight2nd!
-                                                          .user!
-                                                          .phone,
-                                                      style: const TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            )
-                                          : InkWell(
-                                              onTap: () {
-                                                showModalBottomSheet(
-                                                  context: context,
-                                                  isScrollControlled: true,
-                                                  builder: (context) => Padding(
-                                                    padding: EdgeInsets.only(
-                                                      bottom:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets
-                                                              .bottom,
-                                                    ),
-                                                    child: const JoinForm(),
-                                                  ),
-                                                );
-                                              },
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: 40,
-                                                    width: 40,
-                                                    child: Image.asset(
-                                                      AppAssets.addIcon,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(height: 5),
-                                                  const Text(
-                                                    'Open',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                ],
                                               ),
-                                            ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+
+                                              //gen 2 // downlinkLeft!.downlinkRight2nd
+                                              InkWell(
+                                                onTap: () {
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                                top: Radius
+                                                                    .circular(
+                                                                        20)),
+                                                      ),
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return _buildBottomSheetContent(
+                                                            name: data
+                                                                .downlinkLeft!
+                                                                .downlinkRight2nd!
+                                                                .user!
+                                                                .name,
+                                                            phone: data
+                                                                .downlinkLeft!
+                                                                .downlinkRight2nd!
+                                                                .user
+                                                                .phone,
+                                                            email: data
+                                                                .downlinkLeft!
+                                                                .downlinkRight2nd!
+                                                                .user
+                                                                .email,
+                                                            joiningDate: data
+                                                                .downlinkLeft!
+                                                                .downlinkRight2nd!
+                                                                .joiningDate,
+                                                            placement: data
+                                                                .downlinkLeft!
+                                                                .placement,
+                                                            lMember: data
+                                                                .downlinkLeft!
+                                                                .lMember,
+                                                            lCarryPoint: data
+                                                                .downlinkLeft!
+                                                                .lCarryPoint,
+                                                            rMember: data
+                                                                .downlinkLeft!
+                                                                .rMember,
+                                                            rCarryPoint: data
+                                                                .downlinkLeft!
+                                                                .rCarryPoint,
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                isLeftActive =
+                                                                    true;
+
+                                                                selectedData = data
+                                                                    .downlinkLeft
+                                                                    ?.downlinkRight2nd;
+                                                                var id = data
+                                                                    .downlinkLeft!
+                                                                    .downlinkRight2nd!
+                                                                    .user
+                                                                    .id;
+                                                                print(id);
+                                                                controller
+                                                                    .fetchTreeData(
+                                                                        id!.toInt());
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            });
+                                                      });
+                                                },
+                                                child: data.downlinkLeft!
+                                                            .downlinkRight2nd !=
+                                                        null
+                                                    ? Column(
+                                                        children: [
+                                                          const CircleAvatar(
+                                                            radius: 25,
+                                                            backgroundImage:
+                                                                AssetImage(
+                                                                    AppAssets
+                                                                        .people),
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Text(
+                                                            data
+                                                                .downlinkLeft!
+                                                                .downlinkRight2nd!
+                                                                .user!
+                                                                .name,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          showModalBottomSheet(
+                                                            context: context,
+                                                            isScrollControlled:
+                                                                true,
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  bottom: MediaQuery.of(
+                                                                          context)
+                                                                      .viewInsets
+                                                                      .bottom),
+                                                              child:
+                                                                  const JoinForm(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 40,
+                                                              width: 40,
+                                                              child:
+                                                                  Image.asset(
+                                                                AppAssets
+                                                                    .addIcon,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 5),
+                                                            const Text(
+                                                              'Open',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                              ),
+
+                                              const SizedBox(
+                                                width: 40,
+                                              ),
+
+                                              const IntrinsicHeight(
+                                                child: Row(
+                                                  children: [
+                                                    Text(''),
+                                                    VerticalDivider(
+                                                      color: Colors.black,
+                                                      thickness: 2,
+                                                    ),
+                                                    Text(''),
+                                                  ],
+                                                ),
+                                              ),
+
+                                              const SizedBox(
+                                                width: 40,
+                                              ),
+
+                                              //2nd gen //downlinkRight! .downlinkLeft2nd
+                                              InkWell(
+                                                onTap: () {
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                                top: Radius
+                                                                    .circular(
+                                                                        20)),
+                                                      ),
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return _buildBottomSheetContent(
+                                                            name: data
+                                                                .downlinkRight!
+                                                                .downlinkLeft2nd!
+                                                                .user!
+                                                                .name,
+                                                            phone: data
+                                                                .downlinkRight!
+                                                                .downlinkLeft2nd!
+                                                                .user
+                                                                .phone,
+                                                            email: data
+                                                                .downlinkRight!
+                                                                .downlinkLeft2nd!
+                                                                .user
+                                                                .email,
+                                                            joiningDate: data
+                                                                .downlinkRight!
+                                                                .downlinkLeft2nd!
+                                                                .joiningDate,
+                                                            placement: data
+                                                                .downlinkRight!
+                                                                .placement,
+                                                            lMember: data
+                                                                .downlinkRight!
+                                                                .lMember,
+                                                            lCarryPoint: data
+                                                                .downlinkRight!
+                                                                .lCarryPoint,
+                                                            rMember: data
+                                                                .downlinkRight!
+                                                                .rMember,
+                                                            rCarryPoint: data
+                                                                .downlinkRight!
+                                                                .rCarryPoint,
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                isLeftActive =
+                                                                    true;
+
+                                                                selectedData = data
+                                                                    .downlinkRight
+                                                                    ?.downlinkLeft2nd;
+
+                                                                ///=====not working
+                                                                var id = data
+                                                                    .downlinkRight!
+                                                                    .downlinkLeft2nd!
+                                                                    .user
+                                                                    .id;
+                                                                print(id);
+                                                                controller
+                                                                    .fetchTreeData(
+                                                                        id!.toInt());
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            });
+                                                      });
+                                                },
+                                                child: data.downlinkRight !=
+                                                            null &&
+                                                        data.downlinkRight!
+                                                                .downlinkLeft2nd !=
+                                                            null
+                                                    ? Column(
+                                                        children: [
+                                                          const CircleAvatar(
+                                                            radius: 25,
+                                                            backgroundImage:
+                                                                AssetImage(
+                                                                    AppAssets
+                                                                        .people),
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Text(
+                                                            data
+                                                                .downlinkRight!
+                                                                .downlinkLeft2nd!
+                                                                .user!
+                                                                .name,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          showModalBottomSheet(
+                                                            context: context,
+                                                            isScrollControlled:
+                                                                true,
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  bottom: MediaQuery.of(
+                                                                          context)
+                                                                      .viewInsets
+                                                                      .bottom),
+                                                              child:
+                                                                  const JoinForm(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 40,
+                                                              width: 40,
+                                                              child:
+                                                                  Image.asset(
+                                                                AppAssets
+                                                                    .addIcon,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 5),
+                                                            const Text(
+                                                              'Open',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                              ),
+
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+
+                                              // gen 2 // downlinkRight!.downlinkRight2nd
+                                              InkWell(
+                                                onTap: () {
+                                                  showModalBottomSheet(
+                                                      context: context,
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                                top: Radius
+                                                                    .circular(
+                                                                        20)),
+                                                      ),
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return _buildBottomSheetContent(
+                                                          name: data
+                                                              .downlinkRight!
+                                                              .downlinkRight2nd!
+                                                              .user!
+                                                              .name,
+                                                          phone: data
+                                                              .downlinkRight!
+                                                              .downlinkRight2nd!
+                                                              .user
+                                                              .phone,
+                                                          email: data
+                                                              .downlinkRight!
+                                                              .downlinkRight2nd!
+                                                              .user
+                                                              .email,
+                                                          joiningDate: data
+                                                              .downlinkRight!
+                                                              .downlinkRight2nd!
+                                                              .joiningDate,
+                                                          placement: data
+                                                              .downlinkRight!
+                                                              .placement,
+                                                          lMember: data
+                                                              .downlinkRight!
+                                                              .lMember,
+                                                          lCarryPoint: data
+                                                              .downlinkRight!
+                                                              .lCarryPoint,
+                                                          rMember: data
+                                                              .downlinkRight!
+                                                              .rMember,
+                                                          rCarryPoint: data
+                                                              .downlinkRight!
+                                                              .rCarryPoint,
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              isLeftActive =
+                                                                  true;
+
+                                                              selectedData = data
+                                                                  .downlinkRight
+                                                                  ?.downlinkLeft2nd;
+                                                              var id = data
+                                                                  .downlinkRight!
+                                                                  .downlinkRight2nd!
+                                                                  .user
+                                                                  .id;
+                                                              print(id);
+                                                              controller
+                                                                  .fetchTreeData(
+                                                                      id!.toInt());
+                                                              Navigator.pop(
+                                                                  context);
+                                                            });
+                                                          },
+                                                        );
+                                                      });
+                                                },
+                                                child: data.downlinkRight !=
+                                                            null &&
+                                                        data.downlinkRight!
+                                                                .downlinkRight2nd !=
+                                                            null
+                                                    ? Column(
+                                                        children: [
+                                                          const CircleAvatar(
+                                                            radius: 25,
+                                                            backgroundImage:
+                                                                AssetImage(
+                                                                    AppAssets
+                                                                        .people),
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Text(
+                                                            data
+                                                                .downlinkRight!
+                                                                .downlinkRight2nd!
+                                                                .user!
+                                                                .name,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          showModalBottomSheet(
+                                                            context: context,
+                                                            isScrollControlled:
+                                                                true,
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  bottom: MediaQuery.of(
+                                                                          context)
+                                                                      .viewInsets
+                                                                      .bottom),
+                                                              child:
+                                                                  const JoinForm(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 40,
+                                                              width: 40,
+                                                              child:
+                                                                  Image.asset(
+                                                                AppAssets
+                                                                    .addIcon,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 5),
+                                                            const Text(
+                                                              'Open',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : InkWell(
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              isScrollControlled: true,
+                                              builder: (context) => Padding(
+                                                padding: EdgeInsets.only(
+                                                  bottom: MediaQuery.of(context)
+                                                      .viewInsets
+                                                      .bottom,
+                                                ),
+                                                child: const JoinForm(),
+                                              ),
+                                            );
+                                          },
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 40,
+                                                width: 40,
+                                                child: Image.asset(
+                                                  AppAssets.addIcon,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 5),
+                                              const Text(
+                                                'Open',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                ],
+                              ),
                             )
                           : const SizedBox(),
                     ),
@@ -2136,17 +2198,17 @@ class _TreeViewState extends State<TreeView> {
     );
   }
 
-  Widget _buildBottomSheetContent({
-    required String name,
-    required String phone,
-    required String email,
-    required int placement,
-    required String joiningDate,
-    required int lMember,
-    required int lCarryPoint,
-    required int rMember,
-    required int rCarryPoint,
-  }) {
+  Widget _buildBottomSheetContent(
+      {required String name,
+      required String phone,
+      required String email,
+      required int placement,
+      required String joiningDate,
+      required int lMember,
+      required int lCarryPoint,
+      required int rMember,
+      required int rCarryPoint,
+      required void Function()? onPressed}) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -2175,7 +2237,8 @@ class _TreeViewState extends State<TreeView> {
           Text('Name: $name', style: const TextStyle(fontSize: 16)),
           Text('Phone: $phone', style: const TextStyle(fontSize: 16)),
           Text('Email: $email', style: const TextStyle(fontSize: 16)),
-          //Text('Joining Date: $joiningDate', style: const TextStyle(fontSize: 16)),
+          Text('Joining Date: $joiningDate',
+              style: const TextStyle(fontSize: 16)),
           Text('placement: $placement', style: const TextStyle(fontSize: 16)),
           Text('Left Member: $lMember', style: const TextStyle(fontSize: 16)),
           Text('Left Carry Point: $lCarryPoint',
@@ -2185,13 +2248,32 @@ class _TreeViewState extends State<TreeView> {
               style: const TextStyle(fontSize: 16)),
           //Text('Placement: $placement', style: const TextStyle(fontSize: 16)),
           const SizedBox(height: 20),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Close'),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Center(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+                  label: const Text('Close'),
+                ),
+              ),
+              Center(
+                child: ElevatedButton.icon(
+                  onPressed: onPressed,
+                  icon: const Icon(
+                    Icons.arrow_upward,
+                    color: Colors.green,
+                  ),
+                  label: const Text('Switch To Top'),
+                ),
+              ),
+            ],
           ),
         ],
       ),
