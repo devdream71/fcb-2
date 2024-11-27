@@ -1,4 +1,3 @@
-import 'package:fcb_global/view/refer/refer_controller/refer_controller.dart';
 import 'package:fcb_global/view/team/team_model/team_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +33,7 @@ class TreeController extends GetxController {
     debugPrint('Token loaded: ${token.value}');
   }
 
-  Future<void> fetchTreeData(int userId) async {
+  Future<void> fetchTreeData(int id) async {
     isLoading.value = true;
     try {
       final response = await http.post(
@@ -43,7 +42,8 @@ class TreeController extends GetxController {
           'Authorization': 'Bearer ${token.value}',
           'Content-Type': 'application/json',
         },
-        body: jsonEncode({'user_id': userId}),
+        //body: jsonEncode({'user_id': userId}),
+        body: jsonEncode({'user_id': id}),
       );
 
       if (response.statusCode == 200) {
@@ -64,53 +64,6 @@ class TreeController extends GetxController {
       isLoading.value = false;
     }
   }
-
-  // Future<void> featchTreeData2(int userId) async {
-  //   isLoading.value = true;
-  //   try {
-  //     final Response = await http.post(
-  //       Uri.parse('https://fcbglobal.uk/api/v1/tree'),
-  //       headers: {
-  //         'Authorization': 'Bearer ${token.value}',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: jsonEncode({'user_id': userId}),
-  //     );
-
-  //     if (Response.statusCode == 200) {
-  //       final jsonData = jsonDecode(Response.body);
-  //       treeData.value = TreeResponse.fromJson(jsonData);
-  //       debugPrint('Tree data fetched successfully');
-  //     } else {
-  //       debugPrint('Error');
-  //     }
-  //   } catch (e) {
-  //     debugPrint('Exception cught: $e');
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  // }
-
-  // Future<void> featchTreeTop(int userId) async {
-  //   isLoading.value = true;
-  //   try {
-  //     final responseTreeTop = await http.post(
-  //         Uri.parse('https://fcbglobal.uk/api/v1/tree'),
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': 'Bearer ${token.value}'
-  //         },
-  //         body: jsonEncode({'user_id': userId}));
-
-  //     if (responseTreeTop.statusCode == 200) {
-  //       final jsonData = jsonDecode(responseTreeTop.body);
-  //     }
-  //   } catch (e) {
-  //     print(('error $e'));
-  //   } finally {
-  //     isLoading.value = false;
-  //   }
-  // }
 
   Downlink? selectedData;
 

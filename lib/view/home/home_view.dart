@@ -472,6 +472,7 @@ class _HomeViewState extends State<HomeView> {
         return Container(
           color: Colors.green.withOpacity(0.4),
           height: 380,
+          //height: ,
           child: ListView.builder(
             shrinkWrap: true,
             //physics: const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
