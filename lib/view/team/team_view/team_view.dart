@@ -197,10 +197,12 @@ class _TreeViewState extends State<TreeView> {
                                             //selectedData = data.downlinkLeft?.downlinkLeft2nd;
                                             //var id = data.downlinkLeft!.user.id;
                                             selectedData = data.id;
-                                            var id = data.downlinkLeft!.downlinkRight2nd!.id;
-                                             
+                                            var id = data.downlinkLeft!
+                                                .downlinkRight2nd!.id;
+
                                             print(id);
-                                            controller.fetchTreeData(id!.toInt());
+                                            controller
+                                                .fetchTreeData(id!.toInt());
                                             Navigator.pop(context);
                                           });
                                         },
@@ -1265,10 +1267,6 @@ class _TreeViewState extends State<TreeView> {
       ),
     );
   }
-  
-
-
-   
 }
 
 ///bottom Model for Root user.

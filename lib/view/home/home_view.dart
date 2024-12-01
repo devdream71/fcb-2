@@ -12,6 +12,7 @@ import 'package:fcb_global/view/team/team_view/team_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -26,6 +27,8 @@ class _HomeViewState extends State<HomeView> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
   Timer? _timer;
+
+  bool showAnimation = true; 
 
   @override
   void initState() {
@@ -59,48 +62,69 @@ class _HomeViewState extends State<HomeView> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(
-                    right: 15, left: 15, bottom: 5, top: 2),
-                color: AppColors.appcolor,
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                        onPressed: () {
-                          Get.to(const Setting(),
-                              transition: Transition.rightToLeftWithFade);
-                        },
-                        icon: const Icon(
-                          Icons.more_vert,
-                          color: Colors.white,
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(
+                        right: 15, left: 15, bottom: 5, top: 2),
+                    color: AppColors.appcolor,
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            onPressed: () {
+                              Get.to(const Setting(),
+                                  transition: Transition.rightToLeftWithFade);
+                            },
+                            icon: const Icon(
+                              Icons.more_vert,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                      ),
+                        buildRating(),
+                        AppSpace.spaceH6,
+                        buildBalance(),
+                        AppSpace.spaceH16,
+                        //buildRefeRowView(),
+                        AppSpace.spaceH10,
+                        AppSpace.spaceH10,
+                        buildCategory(),
+                        AppSpace.spaceH18,
+                        AppSpace.spaceH18,
+                        historyIncomeButton(),
+                      ],
                     ),
-                    buildRating(),
-                    AppSpace.spaceH6,
-                    buildBalance(),
-                    AppSpace.spaceH16,
-                    //buildRefeRowView(),
-                    AppSpace.spaceH10,
-                    AppSpace.spaceH10,
-                    buildCategory(),
-                    AppSpace.spaceH18,
-                    AppSpace.spaceH18,
-                    historyIncomeButton(),
-                  ],
-                ),
+                  ),
+                  AppSpace.spaceH6,
+                  buildShowIncome(),
+                  //historyVisible ? buildShowHistory() : buildShowIncome(),
+                ],
               ),
-              AppSpace.spaceH6,
-              buildShowIncome(),
-              //historyVisible ? buildShowHistory() : buildShowIncome(),
-            ],
-          ),
+            ),
+          
+             if (showAnimation)
+            Center(
+              child: Lottie.asset(
+                'assets/animations/welcome_animation.json',  
+                repeat: false,  
+                onLoaded: (composition) {
+                  Future.delayed(composition.duration, () {
+                    // Hide animation after it completes
+                    setState(() {
+                      showAnimation = false;
+                    });
+                  });
+                },
+              ),
+            ),
+          
+          ],
         ),
       ),
     );

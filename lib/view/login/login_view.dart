@@ -212,6 +212,7 @@ class LoginView extends StatelessWidget {
                               ),
                       ),
                       AppSpace.spaceH14,
+                      
                       InkWell(
                         onTap: () {
                           Get.to(() => const ChangePassword(),
