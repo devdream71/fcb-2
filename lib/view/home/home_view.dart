@@ -12,6 +12,7 @@ import 'package:fcb_global/view/team/team_view/team_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
@@ -77,7 +78,7 @@ class HomeViewState extends State<HomeView> {
 
     // Fetch necessary data
     userController.fetchUserInfo();
-    incomeController.fetchData();
+    //incomeController.fetchData();
 
     // Auto-scroll timer
     _timer = Timer.periodic(const Duration(seconds: 2), (Timer timer) {
@@ -268,130 +269,300 @@ class HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget buildShowIncome() {
-    //final IncomeApiController incomeController = Get.put(IncomeApiController());
+  // Widget buildShowIncome() {
+  //   //final IncomeApiController incomeController = Get.put(IncomeApiController());
 
-    final IncomeApiController incomeController = Get.put(IncomeApiController());
+  //   final IncomeApiController incomeController = Get.put(IncomeApiController());
 
-    incomeController.fetchData();
+  //   incomeController.fetchData();
 
-    final Map<int, String> typeMapping = {
-      0: "ROI",
-      1: "Ref Com.",
-      2: "Deposit Bonus",
-      3: "Matching",
-    };
+  //   final Map<int, String> typeMapping = {
+  //     0: "ROI",
+  //     1: "Ref Com.",
+  //     2: "Deposit Bonus",
+  //     3: "Matching",
+  //   };
 
-    final Map<int, Color> typeColors = {
-      0: Colors.blue.shade100, // ROI
-      1: Colors.orange.shade100, // Referral Commission
-      2: Colors.purple.shade100, // Deposit Bonus
-      3: Colors.green.shade100, // Matching
-    };
+  //   final Map<int, Color> typeColors = {
+  //     0: Colors.blue.shade100, // ROI
+  //     1: Colors.orange.shade100, // Referral Commission
+  //     2: Colors.purple.shade100, // Deposit Bonus
+  //     3: Colors.green.shade100, // Matching
+  //   };
 
-    final Map<int, String> packageMapping = {
-      11: "P11",
-      10: "P10",
-      9: "P9",
-      8: "P8",
-      7: "P7",
-      6: "P6",
-      5: "P5",
-      4: "P4",
-      3: "P3",
-      2: "P2",
-      1: "P1",
-    };
+  //   final Map<int, String> packageMapping = {
+  //     11: "P11",
+  //     10: "P10",
+  //     9: "P9",
+  //     8: "P8",
+  //     7: "P7",
+  //     6: "P6",
+  //     5: "P5",
+  //     4: "P4",
+  //     3: "P3",
+  //     2: "P2",
+  //     1: "P1",
+  //   };
 
-    return Obx(() {
-      if (incomeController.isLoading.value) {
-        return const Center(child: CircularProgressIndicator());
-      }
-      final incomes = incomeController.apiResponse.value?.incomes ?? [];
-      if (incomes.isEmpty) {
-        return const Center(child: Text("No income data available."));
-      }
-      // Load only the first 20 entries
-      final displayedIncomes = incomes.take(150).toList();
+  //   return Obx(() {
+  //     if (incomeController.isLoading.value) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     }
+  //     final incomes = incomeController.apiResponse.value?.incomes ?? [];
+  //     if (incomes.isEmpty) {
+  //       return const Center(child: Text("No income data available."));
+  //     }
+  //     // Load only the first 20 entries
+  //     final displayedIncomes = incomes.take(150).toList();
 
-      return SizedBox(
-        child: Container(
-          height: MediaQuery.of(context).size.height - 390,
+  //     return SizedBox(
+  //       child: Container(
+  //         height: MediaQuery.of(context).size.height - 390,
 
-          //color: Colors.amber,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: FittedBox(
-              child: DataTable(
-                dataRowMinHeight: 18.0,
-                dataRowMaxHeight: 20.0,
-                headingRowHeight: 20,
-                columnSpacing: 56,
-                decoration: const BoxDecoration(color: Colors.yellow),
-                columns: const [
-                  DataColumn(
-                    label: Text("Date",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12)),
-                  ),
-                  DataColumn(
-                    label: Text("Name",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12)),
-                  ),
-                  DataColumn(
-                    label: Text("Package",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12)),
-                  ),
-                  DataColumn(
-                    label: Text("Amount",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12)),
-                  ),
-                ],
-                rows: displayedIncomes.map((entry) {
-                  final entryType = entry['type'];
-                  final rowColor =
-                      typeColors[entryType] ?? Colors.grey.shade200;
-                  return DataRow(
-                    cells: [
-                      DataCell(
-                        Text(
-                          formatDate(entry['date']),
-                          style: const TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          typeMapping[entryType] ?? 'Unknown Type',
-                          style: const TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          packageMapping[entry['package_id']] ?? 'Unknown',
-                          style: const TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      DataCell(
-                        Text(
-                          "${entry['amount'] ?? '0'}\$",
-                          style: const TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ],
-                    color:
-                        WidgetStateProperty.resolveWith((states) => rowColor),
-                  );
-                }).toList(),
+  //         //color: Colors.amber,
+  //         child: SingleChildScrollView(
+  //           scrollDirection: Axis.vertical,
+  //           child: FittedBox(
+  //             child: DataTable(
+  //               dataRowMinHeight: 18.0,
+  //               dataRowMaxHeight: 20.0,
+  //               headingRowHeight: 20,
+  //               columnSpacing: 56,
+  //               decoration: const BoxDecoration(color: Colors.yellow),
+                
+  //               columns: const [
+
+  //                 DataColumn(
+  //                   headingRowAlignment: MainAxisAlignment.start,
+  //                   label: Text("Date",
+  //                       style: TextStyle(
+  //                           fontWeight: FontWeight.bold, fontSize: 12)),
+  //                 ),
+  //                 DataColumn(
+  //                   label: Text("Name",
+  //                       style: TextStyle(
+  //                           fontWeight: FontWeight.bold, fontSize: 12)),
+  //                 ),
+  //                 DataColumn(
+  //                   label: Text("Package",
+  //                       style: TextStyle(
+  //                           fontWeight: FontWeight.bold, fontSize: 12)),
+  //                 ),
+  //                 DataColumn(
+  //                   label: Text("Amount",
+  //                       style: TextStyle(
+  //                           fontWeight: FontWeight.bold, fontSize: 12)),
+  //                 ),
+  //               ],
+  //               rows: displayedIncomes.map((entry) {
+  //                 final entryType = entry['type'];
+  //                 final rowColor =
+  //                     typeColors[entryType] ?? Colors.grey.shade200;
+  //                 return DataRow(
+  //                   cells: [
+  //                     DataCell(
+  //                       Text(
+  //                         formatDate(entry['date']),
+  //                         style: const TextStyle(fontSize: 12),
+  //                       ),
+  //                     ),
+  //                     DataCell(
+  //                       Text(
+  //                         typeMapping[entryType] ?? 'Unknown Type',
+  //                         style: const TextStyle(fontSize: 12),
+  //                       ),
+  //                     ),
+  //                     DataCell(
+  //                       Text(
+  //                         packageMapping[entry['package_id']] ?? 'Unknown',
+  //                         style: const TextStyle(fontSize: 12),
+  //                       ),
+  //                     ),
+  //                     DataCell(
+  //                       Text(
+  //                         "${entry['amount'] ?? '0'}\$",
+  //                         style: const TextStyle(fontSize: 12),
+  //                       ),
+  //                     ),
+  //                   ],
+  //                   color:
+  //                       WidgetStateProperty.resolveWith((states) => rowColor),
+  //                 );
+  //               }).toList(),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   });
+  // }
+
+
+
+   Widget buildShowIncome() {
+  final IncomeApiController incomeController = Get.put(IncomeApiController());
+
+  incomeController.fetchData();
+
+  final Map<int, String> typeMapping = {
+    0: "ROI",
+    1: "Ref Com.",
+    2: "Deposit Bonus",
+    3: "Matching",
+  };
+
+  final Map<int, Color> typeColors = {
+    0: Colors.blue.shade100, // ROI
+    1: Colors.orange.shade100, // Referral Commission
+    2: Colors.purple.shade100, // Deposit Bonus
+    3: Colors.green.shade100, // Matching
+  };
+
+  final Map<int, String> packageMapping = {
+    11: "P11",
+    10: "P10",
+    9: "P9",
+    8: "P8",
+    7: "P7",
+    6: "P6",
+    5: "P5",
+    4: "P4",
+    3: "P3",
+    2: "P2",
+    1: "P1",
+  };
+
+  return Obx(() {
+    if (incomeController.isLoading.value) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    final incomes = incomeController.apiResponse.value?.incomes ?? [];
+    if (incomes.isEmpty) {
+      return const Center(child: Text("No income data available."));
+    }
+    // Load only the first 150 entries
+    final displayedIncomes = incomes.take(150).toList();
+
+    return SizedBox(
+      child: Container(
+        height: MediaQuery.of(context).size.height - 390,
+        child: Column(
+          children: [
+            // Fixed header
+            Container(
+              width: double.infinity,
+              color: Colors.yellow,
+              child: FittedBox(
+                child: DataTable(
+                  dataRowMinHeight: 18.0,
+                  dataRowMaxHeight: 20.0,
+                   headingRowHeight: 20,
+                  // columnSpacing: 56,
+
+                  columns: const [
+                    DataColumn(
+                      label: Text("Date",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12)),
+                    ),
+                    DataColumn(
+                      label: Text("Name",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12)),
+                    ),
+                    DataColumn(
+                      label: Text("Package",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12)),
+                    ),
+                    DataColumn(
+                      label: Text("Amount",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12)),
+                    ),
+                  ],
+                  rows: [], // No rows for the header
+                ),
               ),
             ),
-          ),
+            // Scrollable DataRows
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: DataTable(
+                  dataRowMinHeight: 18.0,
+                  dataRowMaxHeight: 20.0,
+                  headingRowHeight: 20,
+                   
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                  columns: const [
+                    DataColumn(
+                      label: Text(" ",
+                          style: TextStyle(
+                                fontSize: 1)),
+                    ),
+                    DataColumn(
+                      label: Text(" ",
+                          style: TextStyle(
+                                fontSize: 1)),
+                    ),
+                    DataColumn(
+                      label: Text(" ",
+                          style: TextStyle(
+                                fontSize: 1)),
+                    ),
+                    DataColumn(
+                      label: Text(" ",
+                          style: TextStyle(
+                                fontSize: 1)),
+                    ),
+                  ],
+                  rows: displayedIncomes.map((entry) {
+                    final entryType = entry['type'];
+                    final rowColor =
+                        typeColors[entryType] ?? Colors.grey.shade200;
+                    return DataRow(
+                      cells: [
+                        DataCell(
+                          Text(
+                            formatDate(entry['date']),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            typeMapping[entryType] ?? 'Unknown Type',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            packageMapping[entry['package_id']] ?? 'Unknown',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            "${entry['amount'] ?? '0'}\$",
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                      color:
+                          WidgetStateProperty.resolveWith((states) => rowColor),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
         ),
-      );
-    });
-  }
+      ),
+    );
+  });
+}
+
+   
 
   String formatDate(String? date) {
     if (date == null || date.isEmpty) return 'Unknown';

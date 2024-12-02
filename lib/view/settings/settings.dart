@@ -121,15 +121,15 @@ class Setting extends StatelessWidget {
                         },
                       ),
 
-                      customListTile(
-                        title: 'Income',
-                        icon: Icons.wallet,
-                        iconBackgroundColor: Colors.red,
-                        onTap: () {
-                          Get.to(const IncomeView(),
-                              transition: Transition.rightToLeftWithFade);
-                        },
-                      ),
+                      // customListTile(
+                      //   title: 'Income',
+                      //   icon: Icons.wallet,
+                      //   iconBackgroundColor: Colors.red,
+                      //   onTap: () {
+                      //     Get.to(const IncomeView(),
+                      //         transition: Transition.rightToLeftWithFade);
+                      //   },
+                      // ),
 
                       customListTile(
                         title: 'Package',
