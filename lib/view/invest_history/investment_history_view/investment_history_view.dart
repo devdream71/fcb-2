@@ -3,7 +3,7 @@ import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/invest_history/invesment_controller/investment_history_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+ 
 
 class InvestmentPage extends StatelessWidget {
   final InvestmentController controller = Get.put(InvestmentController());

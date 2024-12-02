@@ -66,3 +66,18 @@ class Wallet {
   }
 }
 
+
+
+class IncomeModel {
+  String ? Date;
+  String ? Name;
+  String ?  Package;
+  String ? Amount;
+  
+  IncomeModel({this.Date, this.Name, this.Package, this.Amount});
+
+  factory IncomeModel.fromJson(Map<String, dynamic> json) {
+    return IncomeModel(Amount: json[''], Date: json[''], Name: json[''], Package: json['']);
+  }
+
+} 

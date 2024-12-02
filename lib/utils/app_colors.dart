@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
   // static Color primaryColor = Helpers.fromHex('#F7AA31');
-  static const Color appcolor = Color(0xff7E008D);
+  //static const Color appcolor = Color(0xff7E008D);
+  static const Color appcolor = Color(0xff4a0352);
+
+
   static Color primaryColor = Colors.blue;
   static Color secondaryColor = Colors.green;
   static Color buttonColor = const Color(0xffFF914D);

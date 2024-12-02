@@ -2,10 +2,10 @@ import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/refer/refer_controller/refer_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyReferPage extends StatelessWidget {
+  const MyReferPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final MyReferController myReferController = Get.put(MyReferController());
@@ -15,7 +15,7 @@ class MyReferPage extends StatelessWidget {
         backgroundColor: AppColors.appcolor,
         body: Obx(() {
           if (myReferController.isLoading.value) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (myReferController.errorMessage.isNotEmpty) {

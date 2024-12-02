@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'view/login/login_view.dart';
-
 void main() {
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: Color(0xff7E008D), // navigation bar color
-      statusBarColor: Color(0xff7E008D), // status bar color
+      systemNavigationBarColor: Color(0xff4a0352), // navigation bar color
+      statusBarColor: Color(0xff4a0352), // status bar color
     ),
   );
 }

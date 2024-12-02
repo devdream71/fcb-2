@@ -52,6 +52,7 @@ class CustomTextField extends StatelessWidget {
             obscureText: obscureText,
             onSaved: onSaved,
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
               border: InputBorder.none,
               labelText: labelText,
               hintText: hintText,
@@ -125,10 +126,11 @@ class AppTextFormField extends StatelessWidget {
         items: dropdownItems,
         onChanged: onChanged,
         decoration: InputDecoration(
+        
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey),
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(color: Colors.grey),
@@ -172,7 +174,7 @@ class AppTextFormField extends StatelessWidget {
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey),
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+          const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(color: Colors.grey),

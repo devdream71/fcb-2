@@ -15,6 +15,7 @@ import 'package:fcb_global/view/team/team_view/team_view.dart';
 import 'package:fcb_global/view/withdraw/withdraw.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../change_password/change_password.dart';
 import '../income_statement/income_statement.dart';
 
@@ -547,24 +548,24 @@ class Setting extends StatelessWidget {
                             )),
                       ),
                       //delete acount
-                      ListTile(
-                        minTileHeight: 40,
-                        onTap: () {
-                          showDeleteAlertDialog(context);
-                        },
-                        title: const Text("Delete Account",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 14)),
-                        //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                        leading: const CircleAvatar(
-                            radius: 15,
-                            backgroundColor: Colors.red,
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                              size: 18,
-                            )),
-                      ),
+                      // ListTile(
+                      //   minTileHeight: 40,
+                      //   onTap: () {
+                      //     showDeleteAlertDialog(context);
+                      //   },
+                      //   title: const Text("Delete Account",
+                      //       style:
+                      //           TextStyle(color: Colors.white, fontSize: 14)),
+                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
+                      //   leading: const CircleAvatar(
+                      //       radius: 15,
+                      //       backgroundColor: Colors.red,
+                      //       child: Icon(
+                      //         Icons.delete,
+                      //         color: Colors.white,
+                      //         size: 18,
+                      //       )),
+                      // ),
                     ],
                   ),
                 ),
@@ -576,36 +577,91 @@ class Setting extends StatelessWidget {
     );
   }
 
-  showAlertDialog(BuildContext context) {
-    Widget cancelButton = TextButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        child: const Text("Cancel"));
+  // showAlertDialog(BuildContext context) async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   final token = prefs.getString('auth_token') ?? '';
 
-    Widget logOutButton = TextButton(
-        onPressed: () {
-          Get.to(LoginView(), transition: Transition.rightToLeftWithFade);
-        },
-        child: const Text(
-          "Log out",
-          style: TextStyle(color: Colors.red),
-        ));
+  //   Widget cancelButton = TextButton(
+  //       onPressed: () {
+  //         Navigator.of(context).pop();
+  //       },
+  //       child: const Text("Cancel"));
 
-    AlertDialog alertDialog = AlertDialog(
-      title: const Text("Logout"),
-      content: const Text("Are you sure, you want logout"),
-      actions: [
-        cancelButton,
-        logOutButton,
-      ],
-    );
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertDialog;
-        });
-  }
+  //   Widget logOutButton = TextButton(
+  //       onPressed: () async {
+  //         await Future.delayed(const Duration(seconds: 2));
+
+  //         Get.to(LoginView(), transition: Transition.rightToLeftWithFade);
+  //       },
+  //       child: const Text(
+  //         "Log out",
+  //         style: TextStyle(color: Colors.red),
+  //       ));
+
+  //   AlertDialog alertDialog = AlertDialog(
+  //     title: const Text("Logout"),
+  //     content: const Text("Are you sure, you want logout"),
+  //     actions: [
+  //       cancelButton,
+  //       logOutButton,
+  //     ],
+  //   );
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return alertDialog;
+  //       });
+  // }
+
+  
+
+  ///===>
+showAlertDialog(BuildContext context) async {
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  final token = prefs.getString('auth_token') ?? '';
+
+  Widget cancelButton = TextButton(
+    onPressed: () {
+      Navigator.of(context).pop(); 
+    },
+    child: const Text("Cancel"),
+  );
+
+  Widget logOutButton = TextButton(
+    onPressed: () async {
+      
+      await prefs.remove('auth_token');  
+      //await Future.delayed(const Duration(seconds: 2));
+      Get.to(LoginView(), transition: Transition.rightToLeftWithFade);
+    },
+    child: const Text(
+      "Log out",
+      style: TextStyle(color: Colors.red),
+    ),
+  );
+
+  AlertDialog alertDialog = AlertDialog(
+    title: const Text("Logout"),
+    content: const Text("Are you sure, you want to logout?"),
+    actions: [
+      cancelButton,
+      logOutButton,
+    ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alertDialog;
+    },
+  );
+}
+
+
+
+
 
   showDeleteAlertDialog(BuildContext context) {
     Widget cancelButton = TextButton(

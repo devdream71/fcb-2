@@ -61,7 +61,8 @@ class PackageView extends StatelessWidget {
                     ),
                     ...packages.entries.map((entry) {
                       return Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 8),
                         child: InkWell(
                           onTap: () {
                             Get.to(const PackageDetails(),
@@ -81,7 +82,7 @@ class PackageView extends StatelessWidget {
                                   Text(
                                     entry.key.toUpperCase(),
                                     style: const TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -89,42 +90,14 @@ class PackageView extends StatelessWidget {
                                   Text(
                                     "Invest: ${entry.value}\$",
                                     style: const TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  // const Text(
-                                  //   'Package Type: Membership/Investment',
-                                  //   style: TextStyle(
-                                  //       fontSize: 16, color: Colors.white),
-                                  // ),
-                                  // const Text(
-                                  //   "Deposit Bonus: 0 ",
-                                  //   style: TextStyle(
-                                  //     fontSize: 16,
-                                  //     color: Colors.white,
-                                  //   ),
-                                  // ),
-                                  // const Text(
-                                  //   "Daily ROI: 70\$ + ",
-                                  //   style: TextStyle(
-                                  //     fontSize: 16,
-                                  //     color: Colors.white,
-                                  //   ),
-                                  // ),
-                                  // const Align(
-                                  //   alignment: Alignment.topLeft,
-                                  //   child: Text(
-                                  //     "Max ROI Generate: 200 Days ",
-                                  //     style: TextStyle(
-                                  //       fontSize: 16,
-                                  //       color: Colors.white,
-                                  //     ),
-                                  //   ),
-                                  // ),
+                                  
                                 ],
                               ),
                             ),

@@ -1,4 +1,3 @@
-import 'package:fcb_global/view/about/model/about_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -24,20 +23,20 @@ class SendMoneyController extends GetxController {
   var token = ''.obs;
 
   @override
-void onInit() {
-  super.onInit();
-  fetchUserInfo();  // Load data when the controller is initialized
-}
-
+  void onInit() {
+    super.onInit();
+    fetchUserInfo(); // Load data when the controller is initialized
+  }
 
   // Load token from SharedPreferences
   Future<void> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
-    token.value = prefs.getString('auth_token') ?? ''; // Retrieve token or default to empty
+    token.value = prefs.getString('auth_token') ??
+        ''; // Retrieve token or default to empty
   }
 
   Future<void> fetchUserInfo() async {
-    await loadToken();  // Ensure token is loaded before making the request
+    await loadToken(); // Ensure token is loaded before making the request
 
     if (token.value.isEmpty) {
       errorMessage.value = 'No token found. Please log in.';
@@ -51,7 +50,7 @@ void onInit() {
       final response = await http.post(
         Uri.parse('https://fcbglobal.uk/api/v1/inject'),
         headers: {
-          'Authorization': 'Bearer ${token.value}',  // Use dynamic token
+          'Authorization': 'Bearer ${token.value}', // Use dynamic token
           'Content-Type': 'application/json',
         },
       );
@@ -68,7 +67,8 @@ void onInit() {
 
         // Extract wallet balance
         final wallet = data['wallets'] != null && data['wallets'].isNotEmpty
-            ? data['wallets'][0]  // Assuming the first wallet is the primary wallet
+            ? data['wallets']
+                [0] // Assuming the first wallet is the primary wallet
             : null;
 
         if (wallet != null) {
@@ -81,14 +81,10 @@ void onInit() {
         final sendMoneyData = data['sent_money'] as Map<String, dynamic>? ?? {};
         receiveMoney.value = sendMoneyData.entries
             .map((entry) => '${entry.key}: ${entry.value}')
-            .join('\n');  // Format each entry as "date-time: amount"
-
-
-       
-  
-
+            .join('\n'); // Format each entry as "date-time: amount"
       } else {
-        errorMessage.value = 'Error ${response.statusCode}: ${response.reasonPhrase}';
+        errorMessage.value =
+            'Error ${response.statusCode}: ${response.reasonPhrase}';
       }
     } catch (e) {
       errorMessage.value = 'Failed to fetch data: $e';

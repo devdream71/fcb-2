@@ -114,7 +114,7 @@ class Withdraw extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                         Text(
-                          '${userController.myWallet.value}',
+                          '\$ ${userController.myWallet.value}',
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

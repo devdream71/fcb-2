@@ -8,8 +8,11 @@ import 'package:get/get.dart';
 
 class InvestView extends StatelessWidget {
   const InvestView({super.key});
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController packageController = TextEditingController();
+    TextEditingController walletController = TextEditingController();
     return SafeArea(
       child: Scaffold(
           backgroundColor: AppColors.appcolor,
@@ -79,7 +82,11 @@ class InvestView extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  const CustomTextField(),
+                  //const CustomTextField(),
+                  AppTextFormField(
+                    hintText: '',
+                    controller: packageController,
+                  ),
                   AppSpace.spaceH14,
                   const Align(
                     alignment: Alignment.topLeft,
@@ -95,13 +102,16 @@ class InvestView extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  const CustomTextField(),
+                  AppTextFormField(
+                    hintText: '',
+                    controller: walletController,
+                  ),
                   AppSpace.spaceH10,
                   AppSpace.spaceH10,
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
-                      height: 45,
+                      height: 40,
                       width: 85,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -133,8 +143,10 @@ class InvestView extends StatelessWidget {
                           transition: Transition.rightToLeftWithFade);
                     },
                     child: Container(
-                      height: 45,
+                      height: 40,
                       width: double.infinity,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.green,
@@ -146,11 +158,6 @@ class InvestView extends StatelessWidget {
                       ),
                     ),
                   ),
-
-
-                   
-
-
                 ],
               ),
             ),

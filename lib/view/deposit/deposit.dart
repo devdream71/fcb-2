@@ -14,7 +14,6 @@ class Deposit extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.appcolor,
-        
         body: Padding(
           padding:
               const EdgeInsets.only(top: 5.0, left: 16, right: 16, bottom: 5),
@@ -26,35 +25,34 @@ class Deposit extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Deposit",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Deposit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                   Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.cancel,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: const Icon(
+                          Icons.cancel,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-                
-            
+
                 const SizedBox(
                   height: 10,
                 ),
-            
+
                 InkWell(
                   onTap: () {
                     Get.to(() => const DepositHistory());
@@ -78,7 +76,7 @@ class Deposit extends StatelessWidget {
                     ),
                   ),
                 ),
-            
+
                 const SizedBox(
                   height: 15,
                 ),
@@ -93,13 +91,13 @@ class Deposit extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-            
+
                 const LabelWithAsterisk(
                   labelText: 'Amount',
                   isRequired: true,
                   color: Colors.white,
                 ),
-            
+
                 AppTextFormField(
                   controller: TextEditingController(),
                   hintText: "Amount",
@@ -107,17 +105,17 @@ class Deposit extends StatelessWidget {
                   prefixIcon: const Icon(Icons.paid),
                   keyboardType: TextInputType.number,
                 ),
-            
+
                 const SizedBox(
                   height: 10,
                 ),
-            
+
                 const LabelWithAsterisk(
                   labelText: 'TRC20 Wallet',
                   isRequired: true,
                   color: Colors.white,
                 ),
-            
+
                 Row(
                   children: [
                     Expanded(
@@ -140,7 +138,7 @@ class Deposit extends StatelessWidget {
                     ),
                   ],
                 ),
-            
+
                 const SizedBox(height: 16),
                 Center(
                   child: Container(
@@ -157,7 +155,7 @@ class Deposit extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-            
+
                 const SizedBox(height: 16),
                 // TextField(
                 //   decoration: InputDecoration(
@@ -171,24 +169,24 @@ class Deposit extends StatelessWidget {
                   isRequired: true,
                   color: Colors.white,
                 ),
-            
+
                 AppTextFormField(
-                  maxline: 2,
+                  maxline: 1,
                   controller: TextEditingController(),
                   hintText: "Please put your phone number",
                   //validator: validator.validateEmail,
                   prefixIcon: const Icon(Icons.description),
                 ),
-            
+
                 const SizedBox(height: 16),
                 const LabelWithAsterisk(
                   labelText: 'Screenshot',
                   isRequired: true,
                   color: Colors.white,
                 ),
-            
+
                 const SizedBox(height: 16),
-            
+
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -200,7 +198,7 @@ class Deposit extends StatelessWidget {
                           horizontal: 24, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.circular(8), // Set border radius to 8
+                            BorderRadius.circular(8),  
                       ),
                     ),
                     child: const Text(

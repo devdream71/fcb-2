@@ -1,4 +1,3 @@
-import 'package:fcb_global/view/about/model/about_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
