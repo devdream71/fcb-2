@@ -1,4 +1,4 @@
-import 'package:dotted_border/dotted_border.dart';
+
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/package/package_controll/package_controller.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class PackageDetails extends StatelessWidget {
               ),
               const Text(
                 "Package - 1",
-                style: const TextStyle(
+                style:  TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

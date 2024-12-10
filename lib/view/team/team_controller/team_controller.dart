@@ -1,3 +1,4 @@
+import 'package:fcb_global/view/about/controller/about_controller.dart';
 import 'package:fcb_global/view/team/team_model/team_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,16 +11,23 @@ class TreeController extends GetxController {
   var treeData = Rx<TreeResponse?>(null);
   var token = ''.obs;
 
+  //final UserController userController = Get.put(UserController());
+  final UserController userController = Get.find<UserController>();
+
   @override
   void onInit() {
     super.onInit();
-    initializeController();
+    initializeController(); 
+   //await userController.fetchUserInfo();
   }
 
   Future<void> initializeController() async {
+    int treeID = userController.treeid.value;
     await loadToken();
     if (token.isNotEmpty) {
-      fetchTreeData(6);
+      //fetchTreeData(430);
+      fetchTreeData(treeID);
+      print("==========> $treeID");
     } else {
       debugPrint('Error: Token not found');
       Get.snackbar('Error', 'Authentication token is missing.',
@@ -35,6 +43,7 @@ class TreeController extends GetxController {
 
   Future<void> fetchTreeData(int id) async {
     isLoading.value = true;
+    
     try {
       final response = await http.post(
         Uri.parse('https://fcbglobal.uk/api/v1/tree'),
@@ -47,19 +56,23 @@ class TreeController extends GetxController {
       );
 
       if (response.statusCode == 200) {
+        print("=======> $id");
         final jsonData = jsonDecode(response.body);
         treeData.value = TreeResponse.fromJson(jsonData);
         debugPrint('Tree data fetched successfully');
         debugPrint(response.body);
+
+      
+        
       } else {
         debugPrint(
             'Error: Failed to fetch tree data. Status code: ${response.statusCode}');
-        Get.snackbar('Error', 'Failed to fetch tree data',
-            snackPosition: SnackPosition.BOTTOM);
+        // Get.snackbar('Error', 'Failed to fetch tree data',
+        // snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       debugPrint('Exception caught: $e');
-      Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
+     // Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
     } finally {
       isLoading.value = false;
     }

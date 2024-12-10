@@ -7,9 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserController extends GetxController {
   // about section
   RxString name = ''.obs;
+  RxInt id = 0.obs;
   RxString phone = ''.obs;
   RxString email = ''.obs;
   RxString gender = ''.obs;
+  RxInt treeid = 0.obs;
+
   RxBool isLoading = false.obs;
   RxString errorMessage = ''.obs;
 
@@ -60,6 +63,9 @@ class UserController extends GetxController {
         final userInfo = data['userInfo'];
 
         // Extracting required fields
+        id.value = userInfo['id'] ?? 0;
+        treeid.value = userInfo['tree_id'] ?? 0;
+        print(treeid);
         name.value = userInfo['name'] ?? 'Unknown';
         phone.value = userInfo['phone'] ?? 'N/A';
         email.value = userInfo['email'] ?? 'N/A';
@@ -86,4 +92,8 @@ class UserController extends GetxController {
       isLoading.value = false;
     }
   }
+
+
+   
+   
 }

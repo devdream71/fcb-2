@@ -62,13 +62,27 @@ class About extends StatelessWidget {
                           "Name",
                           style: TextStyle(color: Colors.white),
                         ),
-                        subtitle: Text(
-                          userController.name.value,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                        subtitle: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              userController.name.value,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                            // Text(
+                            //   userController.treeid.toString(),
+                            //   style: const TextStyle(
+                            //     fontWeight: FontWeight.bold,
+                            //     color: Colors.white,
+                            //     fontSize: 16,
+                            //   ),
+                            // ),
+                          ],
                         ),
                       ),
                       ListTile(

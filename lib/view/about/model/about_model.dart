@@ -28,7 +28,9 @@ class ApiResponse {
       myRefer: json['myRefer'] ?? [],
       notification: json['notification'],
       userInfo: UserInfo.fromJson(json['userInfo']),
-      wallets: (json['wallets'] as List).map((item) => Wallet.fromJson(item)).toList(),
+      wallets: (json['wallets'] as List)
+          .map((item) => Wallet.fromJson(item))
+          .toList(),
       income: json['income'] ?? [],
       incomeType: List<String>.from(json['income_type'] ?? []),
       incomeList: json['income_list'] ?? [],
@@ -40,6 +42,7 @@ class ApiResponse {
 }
 
 class UserInfo {
+  int id;
   String name;
   String uuid;
   String phone;
@@ -55,6 +58,7 @@ class UserInfo {
   String createdAt;
 
   UserInfo({
+    required this.id,
     required this.name,
     required this.uuid,
     required this.phone,
@@ -72,6 +76,7 @@ class UserInfo {
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {
     return UserInfo(
+      id: json['id'] ?? 0,
       name: json['name'] ?? '',
       uuid: json['uuid'] ?? '',
       phone: json['phone'] ?? '',

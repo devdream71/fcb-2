@@ -1,3 +1,5 @@
+ 
+
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:fcb_global/view/about/controller/about_controller.dart';
 import 'package:fcb_global/view/withdraw/withdraw_history.dart';
@@ -58,7 +60,7 @@ class Withdraw extends StatelessWidget {
                     transition: Transition.leftToRightWithFade);
               },
               child: Container(
-                height: 45,
+                height: 40,
                 width: double.infinity,
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
@@ -110,13 +112,13 @@ class Withdraw extends StatelessWidget {
                         const Text(
                           'Available Balance',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 5),
                         Text(
                           '\$ ${userController.myWallet.value}',
                           style: const TextStyle(
-                            fontSize: 24,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.green,
                           ),
@@ -137,7 +139,7 @@ class Withdraw extends StatelessWidget {
             ),
             AppTextFormField(
               controller: TextEditingController(),
-              hintText: "Amount",
+              hintText: "",
               //validator: validator.validateEmail,
               prefixIcon: const Icon(Icons.paid),
               keyboardType: TextInputType.number,
@@ -152,7 +154,7 @@ class Withdraw extends StatelessWidget {
             ),
             AppTextFormField(
               controller: TextEditingController(),
-              hintText: "Wallet",
+              hintText: "",
               //validator: validator.validateEmail,
               prefixIcon: const Icon(Icons.paid),
               keyboardType: TextInputType.number,
@@ -167,7 +169,7 @@ class Withdraw extends StatelessWidget {
             ),
             AppTextFormField(
               controller: TextEditingController(),
-              hintText: "5 ",
+              hintText: "",
               //validator: validator.validateEmail,
               prefixIcon: const Icon(Icons.paid),
               keyboardType: TextInputType.number,
@@ -183,7 +185,7 @@ class Withdraw extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
                   shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.circular(8), // Set border radius to 8
@@ -194,7 +196,7 @@ class Withdraw extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

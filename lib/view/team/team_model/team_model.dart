@@ -13,6 +13,7 @@ class TreeResponse {
   final Downlink? downlinkLeft;
   final Downlink? downlinkRight;
   final ReferBy referBy;
+  final int uplink;
 
   TreeResponse({
     required this.id,
@@ -29,11 +30,13 @@ class TreeResponse {
     this.downlinkLeft,
     this.downlinkRight,
     required this.referBy,
+    required this.uplink,
   });
 
   factory TreeResponse.fromJson(Map<String, dynamic> json) {
     return TreeResponse(
       id: json['id'],
+      uplink: json['uplink_id'] ?? 0,
       joiningDate: json['joining_date'],
       placement: json['placement'],
       lCarryPoint: json['l_carry_point'],
@@ -102,6 +105,7 @@ class Downlink {
 
 class User {
   final int id;
+  final int treeId;
   final String name;
   final String phone;
   final String email;
@@ -111,11 +115,13 @@ class User {
     required this.name,
     required this.phone,
     required this.email,
+    required this.treeId,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
+      treeId: json['tree_id'],
       name: json['name'],
       phone: json['phone'],
       email: json['email'],

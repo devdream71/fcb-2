@@ -221,313 +221,6 @@ class Setting extends StatelessWidget {
                         },
                       ),
 
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const HomeView(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Home",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //     radius: 15,
-                      //     backgroundColor: Colors.red,
-                      //     child: Icon(
-                      //       Icons.home,
-                      //       color: Colors.white,
-                      //       size: 18,
-                      //     ),
-                      //   ),
-                      // ),
-
-                      //my wallet
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(MyWallet(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("My Wallet",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.wallet,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-
-                      //about
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(About(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("About",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.info,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-
-                      //notification
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const AppNotification(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Notification",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.notifications,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //income Statement
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const IncomeStatement(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Income Statement",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.description,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //income ===
-
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const IncomeView(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Income",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.description,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //package
-
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const PackageView(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Package",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.inventory_2,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-
-                      //my refer
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(MyReferPage(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("My Refer",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.inventory_2,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-
-                      //invest
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const InvestView(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Invest",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.access_alarm,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //team
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(TreeView(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Team",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.people,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //withdrae
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const Withdraw(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Withdraw",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.monetization_on,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //deposit
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const Deposit(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Deposit",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.money,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //send money
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const SendMoney(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Send Money",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.send,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //change password
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(const ChangePassword(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Change Password",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.lock_reset,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
-                      //recive money
-                      // ListTile(
-                      //   minTileHeight: 40,
-                      //   onTap: () {
-                      //     Get.to(ReceiveMoneyPage(),
-                      //         transition: Transition.rightToLeftWithFade);
-                      //   },
-                      //   title: const Text("Receive Money History",
-                      //       style:
-                      //           TextStyle(color: Colors.white, fontSize: 14)),
-                      //   //subtitle:Text('View your profile here', style: TextStyle(color: Colors.white, fontSize: 16)),
-                      //   leading: const CircleAvatar(
-                      //       radius: 15,
-                      //       backgroundColor: Colors.red,
-                      //       child: Icon(
-                      //         Icons.lock_reset,
-                      //         color: Colors.white,
-                      //         size: 18,
-                      //       )),
-                      // ),
                       //log out
                       ListTile(
                         minTileHeight: 40,
@@ -613,55 +306,47 @@ class Setting extends StatelessWidget {
   //       });
   // }
 
-  
-
   ///===>
-showAlertDialog(BuildContext context) async {
+  showAlertDialog(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_token') ?? '';
 
-  final token = prefs.getString('auth_token') ?? '';
+    Widget cancelButton = TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      child: const Text("Cancel"),
+    );
 
-  Widget cancelButton = TextButton(
-    onPressed: () {
-      Navigator.of(context).pop(); 
-    },
-    child: const Text("Cancel"),
-  );
+    Widget logOutButton = TextButton(
+      onPressed: () async {
+        await prefs.remove('auth_token');
+        //await Future.delayed(const Duration(seconds: 2));
+        Get.to(LoginView(), transition: Transition.rightToLeftWithFade);
+      },
+      child: const Text(
+        "Log out",
+        style: TextStyle(color: Colors.red),
+      ),
+    );
 
-  Widget logOutButton = TextButton(
-    onPressed: () async {
-      
-      await prefs.remove('auth_token');  
-      //await Future.delayed(const Duration(seconds: 2));
-      Get.to(LoginView(), transition: Transition.rightToLeftWithFade);
-    },
-    child: const Text(
-      "Log out",
-      style: TextStyle(color: Colors.red),
-    ),
-  );
+    AlertDialog alertDialog = AlertDialog(
+      title: const Text("Logout"),
+      content: const Text("Are you sure, you want to logout?"),
+      actions: [
+        cancelButton,
+        logOutButton,
+      ],
+    );
 
-  AlertDialog alertDialog = AlertDialog(
-    title: const Text("Logout"),
-    content: const Text("Are you sure, you want to logout?"),
-    actions: [
-      cancelButton,
-      logOutButton,
-    ],
-  );
-
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alertDialog;
-    },
-  );
-}
-
-
-
-
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alertDialog;
+      },
+    );
+  }
 
   showDeleteAlertDialog(BuildContext context) {
     Widget cancelButton = TextButton(

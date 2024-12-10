@@ -1,4 +1,3 @@
-import 'package:fcb_global/view/receive_money/controller/receive_money_controller.dart';
 import 'package:fcb_global/view/send_money_history/controller_send_money_history/controller_send_money_history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

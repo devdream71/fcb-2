@@ -5,7 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class JoinForm extends StatefulWidget {
-  const JoinForm({super.key});
+  final int placement;
+  final int uplink;
+
+  const JoinForm({
+    Key? key,
+    required this.placement,
+    required this.uplink,
+  }) : super(key: key);
 
   @override
   State<JoinForm> createState() => _JoinFormState();
@@ -14,6 +21,7 @@ class JoinForm extends StatefulWidget {
 class _JoinFormState extends State<JoinForm> {
   final _formKey = GlobalKey<FormState>();
   String? selectedGender;
+  int? selectedGenderId;
   bool isPasswordVisible = false;
 
   final gender = [
@@ -22,6 +30,12 @@ class _JoinFormState extends State<JoinForm> {
     'Rather not say',
   ];
 
+  final genderMapping = {
+    'Male': 0,
+    'Female': 1,
+    'Rather not say': 2,
+  };
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -29,6 +43,7 @@ class _JoinFormState extends State<JoinForm> {
   final TextEditingController referralController = TextEditingController();
   final TextEditingController uplineController = TextEditingController();
   final TextEditingController positionController = TextEditingController();
+  final TextEditingController possition = TextEditingController();
 
   final UserController userController = Get.put(UserController());
   final JoinController joinController = Get.put(JoinController());
@@ -39,6 +54,8 @@ class _JoinFormState extends State<JoinForm> {
     userController.fetchUserInfo().then((_) {
       // Automatically populate the referral email field with the fetched email
       referralController.text = userController.email.value ?? '';
+      uplineController.text = widget.uplink.toString() ?? '';
+      //possition.text = widget.possition.to
     });
   }
 
@@ -125,7 +142,10 @@ class _JoinFormState extends State<JoinForm> {
                       : null,
                 ),
                 const SizedBox(height: 8),
+
+                ///gender ===>
                 const LabelWithAsterisk(labelText: 'Gender', isRequired: true),
+
                 DropdownButtonFormField<String>(
                   value: selectedGender,
                   decoration: const InputDecoration(
@@ -141,12 +161,16 @@ class _JoinFormState extends State<JoinForm> {
                   onChanged: (value) {
                     setState(() {
                       selectedGender = value;
+                      selectedGenderId = genderMapping[value];
                     });
+                    print(
+                        'Selected Gender: $selectedGender, ID: $selectedGenderId');
                   },
                   validator: (value) =>
                       value == null ? 'Gender is required' : null,
                 ),
                 const SizedBox(height: 16),
+                //ref email ===>
                 const LabelWithAsterisk(
                     labelText: 'Referral E-mail', isRequired: true),
                 CustomTextField(
@@ -155,16 +179,20 @@ class _JoinFormState extends State<JoinForm> {
                   readOnly: true,
                 ),
                 const SizedBox(height: 8),
+                //uplink number ===>
                 const LabelWithAsterisk(
                     labelText: 'Upline Number', isRequired: true),
+
                 CustomTextField(
                   label: 'Upline Number',
                   controller: uplineController,
-                  validator: (value) => value == null || value.isEmpty
-                      ? 'Upline number is required'
-                      : null,
+                  readOnly: true,
+                  // validator: (value) => value == null || value.isEmpty
+                  //     ? 'Upline number is required'
+                  //     : null,
                 ),
                 const SizedBox(height: 16),
+
                 Obx(() {
                   return Align(
                     alignment: Alignment.center,
@@ -176,13 +204,26 @@ class _JoinFormState extends State<JoinForm> {
                             : () {
                                 if (_formKey.currentState!.validate()) {
                                   joinController.submitJoinForm(
-                                    email: 'moshi1@gmail.com',
+                                    email: referralController.text,
                                     name: nameController.text,
                                     phone: phoneController.text,
                                     upline: 168,
                                     position: 1,
-                                    genderId: 1,
+                                    genderId: selectedGenderId ??
+                                        0, // Default to 0 if null
                                   );
+                                  print(
+                                      "Gender: $selectedGender, Gender ID: $selectedGenderId");
+                                  print(
+                                    "name ${nameController.text}",
+                                  );
+                                  print(
+                                    "ref email ${referralController.text}",
+                                  );
+                                  print("phone ${phoneController.text}");
+                                  print("upline ${uplineController.text}");
+                                  print(" upline: ${widget.uplink} ");
+                                  print(" position: ${widget.placement} ");
                                 }
                               },
                         style: ElevatedButton.styleFrom(

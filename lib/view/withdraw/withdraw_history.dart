@@ -1,4 +1,3 @@
-import 'package:fcb_global/utils/app_assets.dart';
 import 'package:fcb_global/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,13 +41,27 @@ class WithdrawHistory extends StatelessWidget {
                         ),
                       ),
                     ),
+                     
+                    DataTable(
+                      
+                      columns: [
+                        DataColumn(label: Text('data')),
+                        DataColumn(label: Text('data')),
+
+                      ] , 
+                    
+    
+                    rows: [
+                      DataRow(cells: [
+                        DataCell(Text("data")),
+                        DataCell(Text('data'))
+                      ])
+                    ]) 
+                    
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
-                ),
-                const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
 
                 const Text(
